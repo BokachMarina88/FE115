@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+ul {
+    list-style: none;
+    margin-bottom: 15px;
+    padding-left: 15px;
+}
+
+li {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+li > label {
+    margin-left: 10px;
+}
+
+h3 {
+    font-size: 30px;
+    line-height: 37px;
+    text-align: center;
+    padding: 15px;
+    font-style: italic;
+    background-color: #2b79e2;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+
+#inputText {
+    width: 100%;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    display: block;
+    padding-left: 20px;
+    margin: 0 auto 15px;
+}
+
+input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: #000000;
+    line-height: 36px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 36px;
+    text-align: left;
+}
+
+input::-moz-placeholder,
+textarea::-webkit-input-placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 36px;
+    text-align: left;
+}
+
+/* Firefox 19+ */
+input:-moz-placeholder,
+textarea::-webkit-input-placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 36px;
+    text-align: left;
+}
+
+/* Firefox 18- */
+input:-ms-input-placeholder,
+textarea::-webkit-input-placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 36px;
+    text-align: left;
+}
+
+button {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.container {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.button {
+    padding: 15px;
+    background-color: #2b79e2;
+    color: #FFFFFF;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: bold;
+}
+
+.done {
+    color: #ced4da;
+    text-decoration: line-through;
+}
+
+.checkbox {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+}

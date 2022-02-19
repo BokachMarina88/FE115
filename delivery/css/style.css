@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+input, select {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: #000000;
+    line-height: 36px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    outline: 0;
+}
+
+button {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.container {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.button {
+    padding: 10px;
+    background-color: #2b79e2;
+    color: #FFFFFF;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: bold;
+}
+
+.delivery_form {
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);;
+}
+
+.date {
+    width: 70%;
+}
+
+.price {
+    padding: 10px;
+    text-align: center;
+    line-height: 33px;
+    background-color: lightgrey;
+    border-radius: 10px;
+}

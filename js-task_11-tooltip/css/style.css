@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+.main {
+    max-width: 40%;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.tooltip {
+    color: red;
+    display: inline-block;
+}
+
+.tooltip .tooltip-element {
+    visibility: hidden;
+    min-width: 120px;
+    max-width: 500px;
+    background-color: grey;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltip-element {
+    visibility: visible;
+}
+

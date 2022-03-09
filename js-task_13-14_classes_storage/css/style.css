@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 25px;
+}
+
+input {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: #000000;
+    line-height: 36px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    outline: 0;
+}
+
+button {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+li {
+    list-style-type: none;
+    margin-bottom: 30px;
+}
+
+.container {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.button,
+.contacts_list_item_remove_button,
+.contacts_list_item_edit_button {
+    padding: 10px;
+    color: #FFFFFF;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.button {
+    width: 100%;
+    background-color: #2b79e2;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contacts_list_item_remove_button,
+.contacts_list_item_edit_button {
+    width: 30%;
+}
+
+.contacts_list_item_remove_button {
+    background-color: rgba(255, 0, 0, .6);
+}
+
+.contacts_list_item_edit_button {
+    background-color: rgba(0, 128, 0, .6);
+}
+
+.contacts_list_item div:nth-child(4) {
+    margin-bottom: 25px;
+}
+
+.contacts_list_item:nth-child(odd) {
+    background-color: rgba(192, 192, 192, .8);
+    border-radius: 10px;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+.contacts_list_item:nth-child(even) {
+    border-radius: 10px;
+    border: 1px solid #000000;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+.form {
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+}
+

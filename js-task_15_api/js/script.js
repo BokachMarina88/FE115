@@ -69,12 +69,13 @@ class ContactsApp extends Contacts {
  constructor() {
   super();
   this.init();
-  // this.contactInfo();
  }
 
  async init() {
   this.renderForm();
-  await this.getData();
+  if (!this.storage.length) {
+   await this.getData();
+  }
   this.contactInfo();
  }
 

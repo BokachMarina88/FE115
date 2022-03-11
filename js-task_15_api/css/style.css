@@ -71,10 +71,6 @@ li {
     background-color: rgba(0, 128, 0, .6);
 }
 
-.contacts_list_item div:nth-child(4) {
-    margin-bottom: 25px;
-}
-
 .contacts_list_item:nth-child(odd) {
     background-color: rgba(192, 192, 192, .8);
     border-radius: 10px;
@@ -97,3 +93,17 @@ li {
     margin-bottom: 30px;
 }
 
+.contacts_list_item div:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.contacts_list_item div:nth-child(4) {
+    margin-bottom: 25px;
+}
+
+.contacts_list_item_name,
+.contacts_list_item_email,
+.contacts_list_item_address,
+.contacts_list_item_phone {
+    font-weight: bold;
+}

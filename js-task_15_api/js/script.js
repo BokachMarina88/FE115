@@ -327,9 +327,9 @@ class ContactsApp extends Contacts {
   localStorage.setItem('contacts', JSON.stringify(this.contacts));
   document.cookie = 'storageExpiration=1; max-age: 864000';
 
-  // if (!getCookie('storageExpiration') && localStorage.getItem('contacts')) {
-  //  localStorage.removeItem('contacts');
-  // }
+  if (!getCookie('storageExpiration') && localStorage.getItem('contacts')) {
+   localStorage.removeItem('contacts');
+  }
  }
 
  get storage() {

@@ -41,7 +41,8 @@ li {
 
 .button,
 .contacts_list_item_remove_button,
-.contacts_list_item_edit_button {
+.contacts_list_item_edit_button,
+.contacts_list_item_save_button {
     padding: 10px;
     color: #FFFFFF;
     border-radius: 10px;
@@ -59,7 +60,8 @@ li {
 }
 
 .contacts_list_item_remove_button,
-.contacts_list_item_edit_button {
+.contacts_list_item_edit_button,
+.contacts_list_item_save_button {
     width: 30%;
 }
 
@@ -69,6 +71,11 @@ li {
 
 .contacts_list_item_edit_button {
     background-color: rgba(0, 128, 0, .6);
+}
+
+.contacts_list_item_save_button {
+    background-color: rgba(54, 54, 255, .6);
+    display: none;
 }
 
 .contacts_list_item:nth-child(odd) {

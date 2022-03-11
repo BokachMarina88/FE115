@@ -26,7 +26,7 @@ class Contacts {
 
  add(data) {
   if (data) {
-   let userId = this.getId();
+   let userId = data.id ? data.id : this.getId();
 
    let user = new User(data);
    user.edit({id: userId});
@@ -40,8 +40,8 @@ class Contacts {
    return elem.user.id === id ? elem : null;
   });
 
-  let user = new User();
-  user.edit(data);
+  let user = new User(data);
+  user.edit({id: id});
 
   Object.assign(editContact, user);
  }
@@ -101,6 +101,11 @@ class ContactsApp extends Contacts {
    let elemList = this.createField('li', new Map([
     ['class', 'contacts_list_item']
    ]));
+
+   let labelId = this.createField('div', new Map([
+    ['class', 'label_email']
+   ]));
+   labelId.innerText = elem.user.id;
 
    let divName = this.createField('div', new Map([
     ['class', 'name']
@@ -169,6 +174,11 @@ class ContactsApp extends Contacts {
    ]));
    editBtn.innerText = 'Edit';
 
+   let saveBtn = this.createField('button', new Map([
+    ['class', 'contacts_list_item_save_button']
+   ]));
+   saveBtn.innerText = 'Save';
+
    let removeBtn = this.createField('button', new Map([
     ['class', 'contacts_list_item_remove_button']
    ]));
@@ -178,13 +188,17 @@ class ContactsApp extends Contacts {
    divEmail.append(labelEmail, listEmail);
    divAddress.append(labelAddress, listAddress);
    divPhone.append(labelPhone, listPhone);
-   divButtons.append(editBtn, removeBtn);
+   divButtons.append(editBtn, saveBtn, removeBtn);
 
-   elemList.append(divName, divEmail, divAddress, divPhone, divButtons);
+   elemList.append(labelId, divName, divEmail, divAddress, divPhone, divButtons);
    this.contactsList.append(elemList);
 
-   editBtn.addEventListener('click', _ => {
-    this.editContact(elem.user.id, listName, listEmail, listAddress, listPhone);
+   editBtn.addEventListener('click', event => {
+    this.editContact(event);
+   })
+
+   saveBtn.addEventListener('click', event => {
+    this.saveContact(event, elem.user.id, listName, listEmail, listAddress, listPhone);
    })
 
    removeBtn.addEventListener('click', _ => this.removeContact(elem.user.id));
@@ -192,20 +206,23 @@ class ContactsApp extends Contacts {
 
  }
 
- editContact(id, name, email, address, phone) {
-  name.setAttribute('contenteditable', 'true');
-  email.setAttribute('contenteditable', 'true');
-  address.setAttribute('contenteditable', 'true');
-  phone.setAttribute('contenteditable', 'true');
+ editContact(event) {
+  this.setContenteditableField(event.target.parentNode.parentNode, 'true');
+  this.changeButtons(event.target);
+ }
 
+
+ saveContact(event, id) {
   let data = {};
-  let editList = document.querySelector('.contacts_list_item');
+  let editList = event.target.parentNode.parentNode;
   this.inputs.forEach((item) => {
    data[item.name] = editList.querySelector('.contacts_list_item_' + item.name).textContent;
   });
-
   this.edit(id, data);
   this.storage = this.contacts;
+
+  this.setContenteditableField(event.target.parentNode.parentNode, 'false');
+  this.changeButtons(event.target);
  }
 
  removeContact(id) {
@@ -284,6 +301,26 @@ class ContactsApp extends Contacts {
    this.addContact(event)
   });
 
+ }
+
+ setContenteditableField(fields, boolValue) {
+  this.inputs.forEach(item => {
+   fields.querySelector('.contacts_list_item_' + item.name).setAttribute('contenteditable', boolValue);
+  });
+ }
+
+ changeButtons(target) {
+  let saveButton;
+  let editButton = target;
+
+  if (target.className === 'contacts_list_item_edit_button') {
+   saveButton = target.nextSibling;
+  } else if (target.className === 'contacts_list_item_save_button') {
+   saveButton = target.previousSibling;
+  }
+
+  saveButton.style.display = 'block';
+  editButton.style.display = 'none';
  }
 
  set storage(data) {

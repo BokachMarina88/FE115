@@ -2,7 +2,11 @@ class User {
  constructor(data) {
   this.user = {};
   if (data) {
-   this.user = data;
+   this.user.id = data.id;
+   this.user.name = data.name;
+   this.user.email = data.email;
+   this.user.address = data.address;
+   this.user.phone = data.phone;
   }
  }
 
@@ -98,27 +102,65 @@ class ContactsApp extends Contacts {
     ['class', 'contacts_list_item']
    ]));
 
-   let listName = this.createField('div', new Map([
+   let divName = this.createField('div', new Map([
+    ['class', 'name']
+   ]));
+   let labelName = this.createField('span', new Map([
+    ['class', 'label_name']
+   ]));
+   let listName = this.createField('span', new Map([
     ['class', 'contacts_list_item_name']
    ]));
+
+   labelName.textContent = 'Client name: ';
    listName.innerText = elem.user.name;
 
-   let listEmail = this.createField('div', new Map([
+   let divEmail = this.createField('div', new Map([
+    ['class', 'email']
+   ]));
+   let labelEmail = this.createField('span', new Map([
+    ['class', 'label_email']
+   ]));
+   let listEmail = this.createField('span', new Map([
     ['class', 'contacts_list_item_email']
    ]));
+   labelEmail.textContent = 'Client email: ';
+
    listEmail.innerText = elem.user.email;
 
-   let listAddress = this.createField('div', new Map([
+   let divAddress = this.createField('div', new Map([
+    ['class', 'address']
+   ]));
+   let labelAddress = this.createField('span', new Map([
+    ['class', 'label_address']
+   ]));
+   let listAddress = this.createField('span', new Map([
     ['class', 'contacts_list_item_address']
    ]));
-   listAddress.innerText = elem.user.address;
 
-   let listPhone = this.createField('div', new Map([
+   labelAddress.textContent = 'Client address: ';
+   let addressData = '';
+   if (elem.user.address.city && elem.user.address.street && elem.user.address.zipcode) {
+    addressData = `${elem.user.address.city} ${elem.user.address.street} ${elem.user.address.zipcode}`;
+   } else {
+    addressData = elem.user.address;
+   }
+   listAddress.innerText = addressData;
+
+   let divPhone = this.createField('div', new Map([
+    ['class', 'phone']
+   ]));
+   let labelPhone = this.createField('span', new Map([
+    ['class', 'label_phone']
+   ]));
+   let listPhone = this.createField('span', new Map([
     ['class', 'contacts_list_item_phone']
    ]));
+
+   labelPhone.textContent = 'Client phone: ';
    listPhone.innerText = elem.user.phone;
 
-   let div = this.createField('div', new Map([
+   let divButtons = this.createField('div', new Map([
     ['class', 'buttons']
    ]));
 
@@ -132,8 +174,13 @@ class ContactsApp extends Contacts {
    ]));
    removeBtn.innerText = 'Remove';
 
-   div.append(editBtn, removeBtn);
-   elemList.append(listName, listEmail, listAddress, listPhone, div);
+   divName.append(labelName, listName);
+   divEmail.append(labelEmail, listEmail);
+   divAddress.append(labelAddress, listAddress);
+   divPhone.append(labelPhone, listPhone);
+   divButtons.append(editBtn, removeBtn);
+
+   elemList.append(divName, divEmail, divAddress, divPhone, divButtons);
    this.contactsList.append(elemList);
 
    editBtn.addEventListener('click', _ => {
@@ -168,7 +215,7 @@ class ContactsApp extends Contacts {
  }
 
  createField(formElem, elemAttrs) {
-  let exceptTags = ['div', 'li', 'button'];
+  let exceptTags = ['div', 'li', 'button', 'span'];
   let field = document.createElement(formElem);
 
   if (!exceptTags.includes(formElem)) {
@@ -258,8 +305,6 @@ class ContactsApp extends Contacts {
  }
 
  async getData() {
-
-  console.log("getData");
   let url = 'https://jsonplaceholder.typicode.com/users';
 
   await fetch(url)

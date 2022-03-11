@@ -211,7 +211,6 @@ class ContactsApp extends Contacts {
   this.changeButtons(event.target);
  }
 
-
  saveContact(event, id) {
   let data = {};
   let editList = event.target.parentNode.parentNode;
@@ -327,9 +326,9 @@ class ContactsApp extends Contacts {
   localStorage.setItem('contacts', JSON.stringify(this.contacts));
   document.cookie = 'storageExpiration=1; max-age: 864000';
 
-  if (!getCookie('storageExpiration') && localStorage.getItem('contacts')) {
-   localStorage.removeItem('contacts');
-  }
+  // if (!getCookie('storageExpiration') && localStorage.getItem('contacts')) {
+  //  localStorage.removeItem('contacts');
+  // }
  }
 
  get storage() {
@@ -345,11 +344,18 @@ class ContactsApp extends Contacts {
   let url = 'https://jsonplaceholder.typicode.com/users';
 
   await fetch(url)
-  .then(response => response.json())
+  .then(response => {
+    if (response.status === 200) {
+     return response.json();
+    }
+   }
+  )
   .then(data => {
-   data.forEach(item => {
-    this.add(item);
-   });
+   if (data) {
+    data.forEach(item => {
+     this.add(item);
+    });
+   }
   });
  }
 }

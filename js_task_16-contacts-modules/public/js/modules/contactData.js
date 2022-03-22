@@ -12,11 +12,9 @@ export default class Contacts {
 
    let user = new User(data);
    let contactsApp = new ContactsApp();
-   if(!contactsApp.storage.length){
+   if (contactsApp.storage.length) {
     this.contacts = contactsApp.storage;
    }
-
-   console.log( this.contacts);
 
    user.edit({id: userId});
    this.contacts.push(user);
@@ -25,6 +23,10 @@ export default class Contacts {
  }
 
  edit(id, data) {
+  let contactsApp = new ContactsApp();
+  if (contactsApp.storage.length) {
+   this.contacts = contactsApp.storage;
+  }
   let editContact = this.contacts.find(elem => {
    return elem.user.id === id ? elem : null;
   });
@@ -36,6 +38,10 @@ export default class Contacts {
  }
 
  remove(id) {
+  let contactsApp = new ContactsApp();
+  if (contactsApp.storage.length) {
+   this.contacts = contactsApp.storage;
+  }
   this.contacts = this.contacts.filter(elem => elem.user.id !== id ? elem : null);
  }
 

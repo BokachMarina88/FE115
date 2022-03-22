@@ -1,5 +1,6 @@
 import createField from './renderData.js';
 import Contacts from "./contactData.js";
+import ContactsApp from "./contactsApp";
 
 export default function contactInfo() {
  let contactsList = document.querySelector('.contacts_list')
@@ -101,18 +102,20 @@ export default function contactInfo() {
   divPhone.append(labelPhone, listPhone);
   divButtons.append(editBtn, saveBtn, removeBtn);
 
-  elemList.append(labelId, divName, divEmail, divAddress, divPhone, divButtons);
+  elemList.append(divName, divEmail, divAddress, divPhone, divButtons);
   contactsList.append(elemList);
 
+  let contactsApp = new ContactsApp();
   editBtn.addEventListener('click', event => {
-   // this.editContact(event);
+   contactsApp.editContact(event);
   })
 
   saveBtn.addEventListener('click', event => {
-   // this.saveContact(event, elem.user.id, listName, listEmail, listAddress, listPhone);
+   contactsApp.saveContact(event, elem.user.id, listName, listEmail, listAddress, listPhone);
   })
 
-  removeBtn.addEventListener('click', _ => this.removeContact(elem.user.id));
+  removeBtn.addEventListener('click', _ =>{
+   contactsApp.removeContact(elem.user.id)
+  } );
  });
-
 }

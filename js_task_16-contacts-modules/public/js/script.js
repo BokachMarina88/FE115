@@ -1,8 +1,6 @@
 import init from "./modules/init";
-import ContactsApp from "./modules/contactsApp";
-
-// new ContactsApp();
 init();
+
 // class Contacts {
 //  constructor() {
 //   this.contacts = [];
@@ -345,11 +343,11 @@ init();
 // //  }
 // }
 
-function getCookie(name) {
- let matches = document.cookie.match(new RegExp(
-  "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
- ));
- return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+// function getCookie(name) {
+//  let matches = document.cookie.match(new RegExp(
+//   "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+//  ));
+//  return matches ? decodeURIComponent(matches[1]) : undefined;
+// }
 
 

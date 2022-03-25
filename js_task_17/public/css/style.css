@@ -9,6 +9,15 @@ body {
     line-height: 25px;
 }
 
+a {
+    text-decoration: none;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
 button {
     border: 0;
     outline: 0;
@@ -52,7 +61,7 @@ main {
 }
 
 .buttons {
-    min-width: 100px;
+    min-width: 120px;
 }
 
 .list_item:nth-child(odd) {
@@ -87,3 +96,19 @@ main {
     width: 130px;
 }
 
+.ul_nav ul {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+}
+
+.ul_nav ul li {
+    background-color: #9FA3A7;
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+}
+
+.logo{
+    width: 150px;
+}

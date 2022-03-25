@@ -1,46 +1,31 @@
 // import Header from "./Header";
 // import Nav from "./Nav";
 import Main from "./Main";
+import Nav from "./Nav";
 // import Footer from "./Footer";
 import renderProducts from "./renderProducts";
+import GeneralComponent from "./GeneralCompanent";
 
-export default class App {
+export default class App extends GeneralComponent {
  constructor() {
-  this.element;
+  super();
  }
 
  async init() {
-  if (!this.storage.length) {
-   await this.getData();
-  }
+  // if (!this.storage.length) {
+  //  await this.getData();
+  // }
 
   this.renderHead();
   this.create('div', [{label: 'id', value: 'app'}]);
-  this.render(document.body, this.element);
+  this.render(document.body, this.create('div', [{label: 'id', value: 'app'}]));
 
-  // console.log(new Header().init());
+  // console.log(new Main().init());
   // this.render(document.getElementById('app'), new Header().create());
-  // this.render(document.getElementById('app'), new Nav().create());
-  this.render(document.getElementById('app'), new Main().create());
+  this.render(document.getElementById('app'), new Nav().init());
+  this.render(document.getElementById('app'), new Main().init());
   // this.render(document.getElementById('app'), new Footer().create());
-  //
-  renderProducts();
- }
 
- create(type, options = [], text = '') {
-  let elem = document.createElement(type);
-
-  if (options.length) {
-   options.forEach(item => {
-    elem.setAttribute(item.label, item.value)
-   })
-  }
-  if (text) {
-   elem.innerHTML = text;
-  }
-  this.element = elem;
-
-  return elem;
  }
 
  render(to, elem) {

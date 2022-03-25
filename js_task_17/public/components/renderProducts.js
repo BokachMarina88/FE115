@@ -3,6 +3,7 @@ import App from './App.js';
 
 export default function renderProducts() {
  let main = document.querySelector('.main');
+ main.innerHTML = '';
  let productsList = document.createElement('ul');
  productsList.setAttribute('class', 'products_list');
  main.append(productsList);
@@ -70,8 +71,9 @@ export default function renderProducts() {
    let divButtons = createField('div', new Map([
     ['class', 'buttons']
    ]));
-   let cartBtn = createField('button', new Map([
-    ['class', 'add_cart_button']
+   let cartBtn = createField('a', new Map([
+    ['class', 'add_cart_button'],
+    ['id',`${elem['id']}`]
    ]));
    cartBtn.innerText = 'Add to cart';
    divButtons.append(cartBtn);
@@ -79,9 +81,10 @@ export default function renderProducts() {
    productsList.append(elemList);
 
    cartBtn.addEventListener('click', event => {
+    event.preventDefault();
+    document.cookie =`cart[id][${elem['id']}]=${elem['id']}`
+
     // this.editContact(event);
-   })
-  }
- )
- ;
+   });
+  });
 }

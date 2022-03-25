@@ -1,9 +1,7 @@
-// import Header from "./Header";
-// import Nav from "./Nav";
+import Header from "./Header";
 import Main from "./Main";
 import Nav from "./Nav";
-// import Footer from "./Footer";
-import renderProducts from "./renderProducts";
+import Footer from "./Footer";
 import GeneralComponent from "./GeneralCompanent";
 
 export default class App extends GeneralComponent {
@@ -20,12 +18,10 @@ export default class App extends GeneralComponent {
   this.create('div', [{label: 'id', value: 'app'}]);
   this.render(document.body, this.create('div', [{label: 'id', value: 'app'}]));
 
-  // console.log(new Main().init());
-  // this.render(document.getElementById('app'), new Header().create());
-  this.render(document.getElementById('app'), new Nav().init());
-  this.render(document.getElementById('app'), new Main().init());
-  // this.render(document.getElementById('app'), new Footer().create());
-
+  new Header().init();
+  new Nav().init();
+  new Main().init();
+  new Footer().init();
  }
 
  render(to, elem) {

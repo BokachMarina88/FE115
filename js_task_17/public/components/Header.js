@@ -1,20 +1,17 @@
-import App from "./App.js";
+import GeneralComponent from "./GeneralCompanent";
 
-export default class Header extends App {
+export default class Header extends GeneralComponent {
  constructor() {
   super();
  }
 
  init() {
-  this.create();
+  this.render();
  }
 
- create() {
-  let element = document.createElement('header');
-  element.setAttribute('class', 'header');
-  element.innerHTML = '';
-
-  return element;
+ render() {
+  let element = this.create('header', [{label: 'class', value: 'header'}]);
+  document.getElementById('app').append(element);
  }
 }
 

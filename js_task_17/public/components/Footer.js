@@ -1,20 +1,17 @@
-import App from "./App";
+import GeneralComponent from "./GeneralCompanent";
 
-export default class Footer extends App{
+export default class Footer extends GeneralComponent {
  constructor() {
   super();
  }
 
  init() {
-  this.create();
+  this.render();
  }
 
- create() {
-  let element = document.createElement('footer');
-  element.setAttribute('class', 'footer');
-  element.innerHTML = '';
-
-  return element;
+ render() {
+  let element = this.create('footer', [{label: 'class', value: 'footer'}]);
+  document.getElementById('app').append(element);
  }
 }
 

@@ -1,12 +1,12 @@
 import GeneralComponent from "./GeneralCompanent";
 import Main from "./Main";
+import renderProducts from "./renderProducts";
 
 
 export default class Nav extends GeneralComponent {
  constructor() {
   super();
   this.data;
-  // this.hash = 'home';
  }
 
  init() {
@@ -32,17 +32,57 @@ export default class Nav extends GeneralComponent {
   element.append(divList, divCart);
   document.getElementById('app').append(element);
 
+  let hash = window.location.hash.slice(1);
+
   window.addEventListener('hashchange', async () => {
-   let hash = window.location.hash.slice(1);
-   console.log(this.hash);
+   hash = window.location.hash.slice(1);
+   console.log(hash);
    let page = this.data.find(page => {
     return page.name === hash ? page : null;
    });
 
-   let main = new Main();
-   main.pageRender(page);
+
+   this.pageRender(page);
   });
+  // let hash = window.location.hash.slice(1);
+  if (hash === '') {
+   hash = 'home';
+  }
+  let page = this.data.find(page => {
+   return page.name === hash ? page : null;
+  });
+
+  console.log("page");
+  console.log(page);
+  this.pageRender(page);
+
+
  }
+
+ pageRender(page) {
+  // console.log(page);
+  // if (page.name === 'home') {
+  //  renderProducts();
+  // } else {
+
+  // let main = document.querySelector('.main');
+  if (document.querySelector('.main') === null) {
+   new Main().init();
+  }
+  let main = document.querySelector('.main');
+  console.log(main);
+  main.innerHTML = '';
+
+  console.log(page);
+  let h1 = document.createElement('h1');
+  h1.innerText = page.title;
+  let p = document.createElement('p');
+  p.innerText = page.content;
+  main.append(h1, p);
+  // }
+
+ }
+
 
  renderLinks(list) {
   this.data = this.menuLinks();

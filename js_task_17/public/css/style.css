@@ -45,6 +45,7 @@ li {
 .list_item {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .list_item > div:not(:last-child) {
@@ -109,6 +110,10 @@ main {
     width: 200px;
 }
 
-.logo{
-    width: 150px;
+.ul_nav ul li:not(:last-child) {
+    margin-right: 15px;
+}
+
+.logo {
+    width: 50px;
 }

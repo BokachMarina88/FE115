@@ -20,4 +20,8 @@ export default class GeneralComponent {
 
   return this.element;
  }
+
+ render(to, elem) {
+  to.append(elem);
+ }
 }

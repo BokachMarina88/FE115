@@ -1,5 +1,4 @@
 import Header from "./Header";
-import Main from "./Main";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import GeneralComponent from "./GeneralCompanent";
@@ -10,9 +9,9 @@ export default class App extends GeneralComponent {
  }
 
  async init() {
-  // if (!this.storage.length) {
-  //  await this.getData();
-  // }
+  if (!this.storage.length) {
+   await this.getData();
+  }
 
   this.renderHead();
   this.create('div', [{label: 'id', value: 'app'}]);
@@ -20,12 +19,7 @@ export default class App extends GeneralComponent {
 
   new Header().init();
   new Nav().init();
-  new Main().init();
   new Footer().init();
- }
-
- render(to, elem) {
-  to.append(elem);
  }
 
  renderHead() {

@@ -10,10 +10,10 @@ export default class Nav extends GeneralComponent {
  }
 
  init() {
-  this.render();
+  this.show();
  }
 
- render() {
+ show() {
   let element = this.create('nav', [{label: 'class', value: 'nav'}]);
 
   let divList = this.create('div', [{label: 'class', value: 'ul_nav'}]);
@@ -30,59 +30,46 @@ export default class Nav extends GeneralComponent {
   divCart.append(сart);
 
   element.append(divList, divCart);
-  document.getElementById('app').append(element);
+  this.render(document.getElementById('app'), element);
 
   let hash = window.location.hash.slice(1);
+  this.showPage(hash);
 
   window.addEventListener('hashchange', async () => {
    hash = window.location.hash.slice(1);
-   console.log(hash);
-   let page = this.data.find(page => {
-    return page.name === hash ? page : null;
-   });
-
-
-   this.pageRender(page);
+   this.showPage(hash);
   });
-  // let hash = window.location.hash.slice(1);
-  if (hash === '') {
-   hash = 'home';
-  }
-  let page = this.data.find(page => {
-   return page.name === hash ? page : null;
-  });
-
-  console.log("page");
-  console.log(page);
-  this.pageRender(page);
-
-
  }
 
  pageRender(page) {
-  // console.log(page);
-  // if (page.name === 'home') {
-  //  renderProducts();
-  // } else {
-
-  // let main = document.querySelector('.main');
   if (document.querySelector('.main') === null) {
    new Main().init();
   }
   let main = document.querySelector('.main');
-  console.log(main);
   main.innerHTML = '';
-
-  console.log(page);
-  let h1 = document.createElement('h1');
-  h1.innerText = page.title;
-  let p = document.createElement('p');
-  p.innerText = page.content;
-  main.append(h1, p);
-  // }
-
+  if (page.name === 'home') {
+   renderProducts();
+  } else {
+   console.log(page);
+   let h1 = document.createElement('h1');
+   h1.innerText = page.title;
+   let p = document.createElement('p');
+   p.innerText = page.content;
+   main.append(h1, p);
+  }
  }
 
+ showPage(hash) {
+  if (hash === '') {
+   hash = 'home';
+  }
+
+  let page = this.data.find(page => {
+   return page.name === hash ? page : null;
+  });
+
+  this.pageRender(page);
+ }
 
  renderLinks(list) {
   this.data = this.menuLinks();

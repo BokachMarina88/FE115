@@ -10,7 +10,6 @@ export default class Main extends GeneralComponent {
  }
 
  render() {
-  console.log("main");
   let element = this.create('main', [{label: 'class', value: 'main'}]);
   document.getElementById('app').append(element);
  }

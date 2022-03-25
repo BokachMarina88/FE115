@@ -1,0 +1,89 @@
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+body {
+    font-size: 20px;
+    line-height: 25px;
+}
+
+button {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+li {
+    list-style-type: none;
+    margin-bottom: 30px;
+}
+
+.container {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.add_cart_button {
+    background-color: rgba(255, 0, 0, .6);
+    padding: 10px;
+    color: #FFFFFF;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.list_item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list_item > div:not(:last-child) {
+    margin-right: 25px;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.description {
+    max-width: 800px;
+}
+
+.buttons {
+    min-width: 100px;
+}
+
+.list_item:nth-child(odd) {
+    background-color: rgba(192, 192, 192, .8);
+    border-radius: 10px;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+.list_item:nth-child(even) {
+    border-radius: 10px;
+    border: 1px solid #000000;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+
+.list_item div:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.list_item div:nth-child(:last-child) {
+    margin-bottom: 25px;
+}
+
+.label_element {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.image {
+    width: 130px;
+}
+

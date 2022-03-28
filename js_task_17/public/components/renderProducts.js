@@ -18,7 +18,7 @@ export default function renderProducts(id = null) {
   dataList = getStorage();
  } else {
   disabledArr = [...disabledArr, 'image'];
-  dataList = getStorage().filter(elem => elem.id === id ? elem : null);
+  dataList = getStorage().filter(elem => elem.id === +id ? elem : null);
  }
 
  dataList.map(elem => {

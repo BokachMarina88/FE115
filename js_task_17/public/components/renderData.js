@@ -1,5 +1,5 @@
 export default function createField(formElem, elemAttrs =[]) {
- let exceptTags = ['div', 'li', 'button', 'span'];
+ let exceptTags = ['div', 'li', 'button', 'span', 'input'];
  let field = document.createElement(formElem);
 
  if (!exceptTags.includes(formElem)) {

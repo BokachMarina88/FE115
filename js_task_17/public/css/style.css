@@ -132,5 +132,10 @@ main {
 }
 
 .cart_count {
+    color: #ff0000;
+}
+
+.total {
+    font-weight: bold;
     color: red;
 }

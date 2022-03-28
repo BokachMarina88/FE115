@@ -15,7 +15,7 @@ a {
 
 .nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 button {
@@ -50,6 +50,14 @@ li {
     background-color: rgba(255, 0, 0, .6);
 }
 
+.show_button {
+    display: block;
+}
+
+.hide_button {
+    display: none;
+}
+
 .list_item {
     display: flex;
     justify-content: space-between;
@@ -70,10 +78,6 @@ main {
 }
 
 .buttons {
-    min-width: 120px;
-}
-
-.cart_buttons {
     min-width: 200px;
 }
 
@@ -116,9 +120,6 @@ main {
 }
 
 .ul_nav ul li {
-    background-color: #9FA3A7;
-    padding: 10px;
-    border-radius: 10px;
     width: 200px;
 }
 
@@ -126,6 +127,10 @@ main {
     margin-right: 15px;
 }
 
-.logo {
+.cart {
     width: 50px;
+}
+
+.cart_count {
+    color: red;
 }

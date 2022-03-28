@@ -2,7 +2,6 @@ export function setCookie(id) {
  document.cookie = `cart[${id}]=${id}`;
 }
 
-
 export function getCookies() {
  let matches = [];
 
@@ -19,5 +18,8 @@ export function getCookies() {
 
 export function removeCookie(id) {
  getCookies().filter(item => (item === +id) ? document.cookie = `cart[${id}]=;expires=Thu, 01 Jan 1970 00:00:00 GMT` : null);
- window.location.reload();
+}
+
+export function getCookie(id) {
+ return getCookies().filter(item => (item === +id) ? item : null);
 }

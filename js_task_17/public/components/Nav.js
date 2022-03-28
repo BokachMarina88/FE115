@@ -1,4 +1,5 @@
 import GeneralComponent from "./GeneralCompanent";
+import createField from "./renderData";
 
 export default class Nav extends GeneralComponent {
  constructor() {
@@ -19,12 +20,18 @@ export default class Nav extends GeneralComponent {
   divList.append(list);
 
   let divCart = this.create('div');
-  let сart = this.create('img', [
-   {label: 'src', value: './img/logo.jpg'},
-   {label: 'alt', value: 'Logo'},
-   {label: 'class', value: 'logo'}
+  let cartImg = this.create('img', [
+   {label: 'src', value: './img/cart.jpg'},
+   {label: 'alt', value: 'Cart'},
+   {label: 'class', value: 'cart'}
   ]);
-  divCart.append(сart);
+  let cartCount = createField('span', new Map([
+   ['class', 'cart_count']
+  ]));
+  let cartAmount = createField('span', new Map([
+   ['class', 'cart_amount']
+  ]));
+  divCart.append(cartCount, cartImg, cartAmount);
 
   element.append(divList, divCart);
   this.render(document.getElementById('app'), element);

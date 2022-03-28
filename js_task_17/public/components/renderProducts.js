@@ -1,6 +1,7 @@
 import createField from './renderData.js';
 import {getStorage} from "./storage";
-import {setCookie} from "./cookies";
+import {getCookie, removeCookie, setCookie} from "./cookies";
+import {cartAmount, cartSum} from "./renderCart";
 
 export default function renderProducts(id = null) {
  let dataList;
@@ -105,13 +106,54 @@ export default function renderProducts(id = null) {
    ['id', `${elem['id']}`]
   ]));
   addBtn.innerText = 'Add to cart';
-  divButtons.append(addBtn);
+  let removeBtn = createField('a', new Map([
+   ['class', 'button remove_cart_button'],
+   ['id', `${elem['id']}`]
+  ]));
+  removeBtn.innerText = 'Remove from cart';
+  if (getCookie(+elem['id']).length) {
+   removeBtn.classList.add('show_button');
+   addBtn.classList.add('hide_button');
+  } else {
+   addBtn.classList.add('show_button');
+   removeBtn.classList.add('hide_button');
+  }
+
+  divButtons.append(addBtn, removeBtn);
   elemList.append(divButtons);
   productsList.append(elemList);
 
   addBtn.addEventListener('click', event => {
    event.preventDefault();
    setCookie(event.target.id);
+   if (getCookie(+elem['id']).length) {
+    if (addBtn.classList.contains('show_button')) {
+     addBtn.classList.remove('show_button');
+     addBtn.classList.add('hide_button');
+     removeBtn.classList.remove('hide_button');
+     removeBtn.classList.add('show_button');
+    }
+    cartSum();
+    cartAmount();
+
+   }
+  });
+
+  removeBtn.addEventListener('click', event => {
+   event.preventDefault();
+   removeCookie(+event.target.id);
+   if (removeBtn.classList.contains('show_button')) {
+    removeBtn.classList.remove('show_button');
+    removeBtn.classList.add('hide_button');
+    addBtn.classList.remove('hide_button');
+    addBtn.classList.add('show_button');
+   }
+   cartSum();
+   cartAmount();
+
   });
  });
+
+ cartSum();
+ cartAmount();
 }

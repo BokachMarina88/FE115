@@ -66,7 +66,7 @@ export default function renderCart() {
    });
 
    let divButtons = createField('div', new Map([
-    ['class', 'cart_buttons']
+    ['class', 'buttons']
    ]));
    let removeBtn = createField('a', new Map([
     ['class', 'button remove_cart_button'],
@@ -79,10 +79,35 @@ export default function renderCart() {
 
    removeBtn.addEventListener('click', event => {
     event.preventDefault();
-    removeCookie(+event.target.id)
+    removeCookie(+event.target.id);
+    renderCart();
+    cartSum();
+    cartAmount();
    });
   });
  } else {
   main.innerHTML = 'No products in cart';
+ }
+ cartSum();
+ cartAmount();
+}
+
+export function cartSum() {
+ let count = document.querySelector('.cart_count');
+ if (document.querySelector('.cart_count')) {
+  count.textContent = getCookies().length;
+ } else {
+  count.textContent = "0";
+ }
+}
+
+export function cartAmount() {
+ let amount = document.querySelector('.cart_amount');
+ if (document.querySelector('.cart_amount') && getCookies().length) {
+  let sum = 0;
+  getStorage().filter(item => (getCookies().includes(item.id)) ? sum += item.price : null);
+  amount.textContent = sum;
+ } else {
+  amount.textContent = "";
  }
 }

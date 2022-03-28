@@ -34,9 +34,8 @@ export default class Main extends GeneralComponent {
   if (page.name === 'product') {
    let hash = window.location.hash.slice(1);
    if (hash.indexOf('/') !== -1) {
-    let index = hash.indexOf('/');
-    let id = hash.slice(index + 1);
-    renderProducts(id);
+    let value = hash.split('/');
+    renderProducts(value[1]);
    }
   } else {
    let h1 = document.createElement('h1');
@@ -49,8 +48,8 @@ export default class Main extends GeneralComponent {
 
  showPage(hash) {
   if (hash.indexOf('/') !== -1) {
-   let index = hash.indexOf('/');
-   hash = hash.slice(0, index);
+   let value = hash.split('/');
+   hash = value[0];
   }
 
   if (hash === '') {

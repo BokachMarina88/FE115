@@ -114,20 +114,20 @@ export default function renderProducts(id = null) {
    ['min', '1']
   ]));
 
-  let removeBtn = createField('a', new Map([
-   ['class', 'button remove_cart_button'],
-   ['id', `${elem['id']}`]
+  let cartElem = createField('p', new Map([
+   ['class', 'in_cart'],
   ]));
-  removeBtn.innerText = 'Remove from cart';
+  cartElem.textContent = 'Was added to cart';
   if (getCookie(+elem['id']).length) {
-   removeBtn.classList.add('show_button');
+   input.classList.add('hide_button');
    addBtn.classList.add('hide_button');
   } else {
+   cartElem.classList.add('hide_button');
    addBtn.classList.add('show_button');
-   removeBtn.classList.add('hide_button');
+   input.classList.add('show_button');
   }
 
-  divButtons.append(input, addBtn, removeBtn);
+  divButtons.append(input, addBtn, cartElem);
   elemList.append(divButtons);
   productsList.append(elemList);
 
@@ -138,27 +138,15 @@ export default function renderProducts(id = null) {
     if (addBtn.classList.contains('show_button')) {
      addBtn.classList.remove('show_button');
      addBtn.classList.add('hide_button');
-     removeBtn.classList.remove('hide_button');
-     removeBtn.classList.add('show_button');
+     cartElem.classList.remove('hide_button');
+     cartElem.classList.add('show_button');
+     input.classList.remove('show_button');
+     input.classList.add('hide_button');
     }
     cartSum();
     cartAmount();
 
    }
-  });
-
-  removeBtn.addEventListener('click', event => {
-   event.preventDefault();
-   removeValueCookie(event.target);
-   if (removeBtn.classList.contains('show_button')) {
-    removeBtn.classList.remove('show_button');
-    removeBtn.classList.add('hide_button');
-    addBtn.classList.remove('hide_button');
-    addBtn.classList.add('show_button');
-   }
-   cartSum();
-   cartAmount();
-
   });
  });
 

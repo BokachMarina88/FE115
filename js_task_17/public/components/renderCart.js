@@ -1,15 +1,16 @@
 import createField from './renderData.js';
 import {getStorage} from "./storage";
-import {getCookies, removeCookie} from "./cookies";
+import {getCookies, removeValueCookie} from "./cookies";
 
 export default function renderCart() {
- let arrIds = [];
+ let arrCart = [];
  let dataList = [];
  let main = document.querySelector('.main');
 
- arrIds = getCookies();
- if (arrIds.length) {
-  dataList = getStorage().filter(item => (arrIds.includes(item.id)) ? item : null);
+ let getCook = getCookies();
+ if (getCook.length) {
+  getCook.forEach(item => arrCart.push(item.key));
+  dataList = getStorage().filter(item => (arrCart.includes(item.id)) ? item : null);
  }
 
  if (dataList.length) {
@@ -65,6 +66,15 @@ export default function renderCart() {
     elemList.append(div);
    });
 
+   let divTotal = createField('input', new Map([
+    ['type', 'number'],
+    ['class', 'total'],
+    ['step', '1'],
+    ['value', '1'],
+    ['min', '1']
+   ]));
+   divTotal.value = cartPointsByElement(elem['id']);
+
    let divButtons = createField('div', new Map([
     ['class', 'buttons']
    ]));
@@ -73,13 +83,13 @@ export default function renderCart() {
     ['id', `${elem['id']}`]
    ]));
    removeBtn.innerText = 'Remove from cart';
-   divButtons.append(removeBtn);
+   divButtons.append(divTotal, removeBtn);
    elemList.append(divButtons);
    productsList.append(elemList);
 
    removeBtn.addEventListener('click', event => {
     event.preventDefault();
-    removeCookie(+event.target.id);
+    removeValueCookie(event.target);
     renderCart();
     cartSum();
     cartAmount();
@@ -93,21 +103,43 @@ export default function renderCart() {
 }
 
 export function cartSum() {
- let count = document.querySelector('.cart_count');
- if (document.querySelector('.cart_count')) {
-  count.textContent = getCookies().length;
+ let count = 0;
+ getCookies().forEach(item => count += item.value);
+
+ let elemCount = document.querySelector('.cart_count');
+ if (elemCount) {
+  elemCount.textContent = count.toString();
  } else {
-  count.textContent = "0";
+  elemCount.textContent = count.toString();
  }
 }
 
 export function cartAmount() {
+ let sum = 0;
  let amount = document.querySelector('.cart_amount');
- if (document.querySelector('.cart_amount') && getCookies().length) {
-  let sum = 0;
-  getStorage().filter(item => (getCookies().includes(item.id)) ? sum += item.price : null);
-  amount.textContent = sum;
+ if (amount && getCookies().length) {
+  let elemPoint = 0;
+  let getCookKeys = [];
+  if (getCookies().length) {
+   getCookies().forEach(item => {
+    getCookKeys.push(item.key);
+   });
+  }
+  getStorage().filter(item => {
+   if (getCookKeys.includes(item.id)) {
+    getCookies().forEach(elem => (elem.key === item.id) ? elemPoint = elem.value : null);
+    sum += item.price * elemPoint;
+   }
+  });
+  amount.textContent = sum.toFixed(3).toString();
  } else {
-  amount.textContent = "";
+  amount.textContent = sum.toString();
  }
+}
+
+export function cartPointsByElement(id) {
+ let elemPoint = '';
+ getCookies().forEach(item => (item.key === id) ? elemPoint = item.value : null);
+
+ return elemPoint;
 }

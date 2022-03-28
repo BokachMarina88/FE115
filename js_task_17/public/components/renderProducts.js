@@ -1,6 +1,6 @@
 import createField from './renderData.js';
 import {getStorage} from "./storage";
-import {getCookie, removeCookie, setCookie} from "./cookies";
+import {getCookie, removeValueCookie, setCookie} from "./cookies";
 import {cartAmount, cartSum} from "./renderCart";
 
 export default function renderProducts(id = null) {
@@ -18,7 +18,7 @@ export default function renderProducts(id = null) {
   dataList = getStorage();
  } else {
   disabledArr = [...disabledArr, 'image'];
-  dataList = getStorage().filter(elem => elem.id == id ? elem : null);
+  dataList = getStorage().filter(elem => elem.id === id ? elem : null);
  }
 
  dataList.map(elem => {
@@ -106,6 +106,14 @@ export default function renderProducts(id = null) {
    ['id', `${elem['id']}`]
   ]));
   addBtn.innerText = 'Add to cart';
+  let input = createField('input', new Map([
+   ['type', 'number'],
+   ['class', 'points'],
+   ['step', '1'],
+   ['value', '1'],
+   ['min', '1']
+  ]));
+
   let removeBtn = createField('a', new Map([
    ['class', 'button remove_cart_button'],
    ['id', `${elem['id']}`]
@@ -119,13 +127,13 @@ export default function renderProducts(id = null) {
    removeBtn.classList.add('hide_button');
   }
 
-  divButtons.append(addBtn, removeBtn);
+  divButtons.append(input, addBtn, removeBtn);
   elemList.append(divButtons);
   productsList.append(elemList);
 
   addBtn.addEventListener('click', event => {
    event.preventDefault();
-   setCookie(event.target.id);
+   setCookie(event.target);
    if (getCookie(+elem['id']).length) {
     if (addBtn.classList.contains('show_button')) {
      addBtn.classList.remove('show_button');
@@ -141,7 +149,7 @@ export default function renderProducts(id = null) {
 
   removeBtn.addEventListener('click', event => {
    event.preventDefault();
-   removeCookie(+event.target.id);
+   removeValueCookie(event.target);
    if (removeBtn.classList.contains('show_button')) {
     removeBtn.classList.remove('show_button');
     removeBtn.classList.add('hide_button');

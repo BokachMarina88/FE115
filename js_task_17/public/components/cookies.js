@@ -2,8 +2,22 @@ export function setCookie(target) {
  document.cookie = `cart_points[${target.id}]=${target.previousSibling.value}`;
 }
 
-export function removeCookie(id) {
- getCookies().filter(item => (item.key === id) ? document.cookie = `cart_points[${id}]=;expires=Thu, 01 Jan 1970 00:00:00 GMT` : null);
+export function removeValueCookie(target) {
+ getCookies().forEach(elem => {
+  if (elem.key === +target.id) {
+   let res = elem.value - +target.previousSibling.value;
+   if (res > 0) {
+    removeCookie(target);
+    document.cookie = `cart_points[${target.id}]=${res}`;
+   } else {
+    removeCookie(target);
+   }
+  }
+ });
+}
+
+function removeCookie(target) {
+ getCookies().filter(item => (item.key === +target.id) ? document.cookie = `cart_points[${target.id}]=;expires=Thu, 01 Jan 1970 00:00:00 GMT` : null);
 }
 
 export function getCookies() {
@@ -24,5 +38,5 @@ export function getCookies() {
 }
 
 export function getCookie(id) {
- return getCookies().filter(item => (item === +id) ? item : null);
+ return getCookies().filter(item => (item.key === id) ? item : null);
 }

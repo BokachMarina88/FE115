@@ -1,5 +1,5 @@
 import User from "./userData.js"
-import ContactsApp from "./contactsApp.js";
+import {getStorage, setStorage} from "./storage";
 
 export default class Contacts {
  constructor() {
@@ -11,21 +11,19 @@ export default class Contacts {
    let userId = data.id ? data.id : this.getId();
 
    let user = new User(data);
-   let contactsApp = new ContactsApp();
-   if (contactsApp.storage.length) {
-    this.contacts = contactsApp.storage;
+   if (getStorage().length) {
+    this.contacts = getStorage();
    }
 
    user.edit({id: userId});
    this.contacts.push(user);
-   contactsApp.storage = this.contacts;
+   setStorage(this.contacts);
   }
  }
 
  edit(id, data) {
-  let contactsApp = new ContactsApp();
-  if (contactsApp.storage.length) {
-   this.contacts = contactsApp.storage;
+  if (getStorage().length) {
+   this.contacts = getStorage();
   }
   let editContact = this.contacts.find(elem => {
    return elem.user.id === id ? elem : null;
@@ -38,17 +36,16 @@ export default class Contacts {
  }
 
  remove(id) {
-  let contactsApp = new ContactsApp();
-  if (contactsApp.storage.length) {
-   this.contacts = contactsApp.storage;
+  if (getStorage().length) {
+   this.contacts = getStorage();
   }
   this.contacts = this.contacts.filter(elem => elem.user.id !== id ? elem : null);
  }
 
  getContacts() {
-  let contactsApp = new ContactsApp();
-  if (contactsApp.storage && contactsApp.storage.length > 0) {
-   this.contacts = contactsApp.storage;
+  let store = getStorage();
+  if (store && store.length > 0) {
+   this.contacts = store;
   }
 
   return this.contacts;

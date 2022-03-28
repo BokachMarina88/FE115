@@ -133,7 +133,7 @@ export function cartAmount() {
   });
   amount.textContent = sum.toFixed(3).toString();
  } else {
-  amount.textContent = sum.toString();
+  amount.textContent = "";
  }
 }
 

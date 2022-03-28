@@ -6,12 +6,12 @@ export default class Header extends GeneralComponent {
  }
 
  init() {
-  this.render();
+  this.show();
  }
 
- render() {
+ show() {
   let element = this.create('header', [{label: 'class', value: 'header'}]);
-  document.getElementById('app').append(element);
+  this.render(document.getElementById('app'), element);
  }
 }
 

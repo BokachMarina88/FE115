@@ -1,5 +1,6 @@
 import Header from "./Header";
 import Nav from "./Nav";
+import Main from "./Main";
 import Footer from "./Footer";
 import GeneralComponent from "./GeneralCompanent";
 import {getStorage, setStorage} from './storage.js';
@@ -20,6 +21,7 @@ export default class App extends GeneralComponent {
 
   new Header().init();
   new Nav().init();
+  new Main().init();
   new Footer().init();
  }
 

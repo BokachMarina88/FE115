@@ -1,7 +1,4 @@
 import GeneralComponent from "./GeneralCompanent";
-import Main from "./Main";
-import renderProducts from "./renderProducts";
-
 
 export default class Nav extends GeneralComponent {
  constructor() {
@@ -31,57 +28,6 @@ export default class Nav extends GeneralComponent {
 
   element.append(divList, divCart);
   this.render(document.getElementById('app'), element);
-
-  let hash = window.location.hash.slice(1);
-  this.showPage(hash);
-
-  window.addEventListener('hashchange', async () => {
-   hash = window.location.hash.slice(1);
-   this.showPage(hash);
-  });
- }
-
- pageRender(page) {
-  if (document.querySelector('.main') === null) {
-   new Main().init();
-  }
-  let main = document.querySelector('.main');
-  main.innerHTML = '';
-
-  if (page.name === 'home') {
-   renderProducts();
-  }
-  if (page.name === 'product') {
-   let hash = window.location.hash.slice(1);
-   if (hash.indexOf('/') !== -1) {
-    let index = hash.indexOf('/');
-    let id = hash.slice(index + 1);
-    renderProducts(id);
-   }
-  } else {
-   let h1 = document.createElement('h1');
-   h1.innerText = page.title;
-   let p = document.createElement('p');
-   p.innerText = page.content;
-   main.append(h1, p);
-  }
- }
-
- showPage(hash) {
-  if (hash.indexOf('/') !== -1) {
-   let index = hash.indexOf('/');
-   hash = hash.slice(0, index);
-  }
-
-  if (hash === '') {
-   hash = 'home';
-  }
-
-  let page = this.data.find(page => {
-   return page.name === hash ? page : null;
-  });
-
-  this.pageRender(page);
  }
 
  renderLinks(list) {

@@ -1,5 +1,6 @@
 import createField from './renderData.js';
 import {getStorage} from "./storage";
+import {setCookie} from "./cookies";
 
 export default function renderProducts(id = null) {
  let dataList;
@@ -65,7 +66,7 @@ export default function renderProducts(id = null) {
      }
     } else {
      if (item[0] === 'rating') {
-       Object.entries(item[1]).forEach((elem) => {
+      Object.entries(item[1]).forEach((elem) => {
        let divName = createField('div');
        let labelId = createField('span', new Map([
         ['class', `label_element label_${elem[0]}`]
@@ -99,20 +100,18 @@ export default function renderProducts(id = null) {
   let divButtons = createField('div', new Map([
    ['class', 'buttons']
   ]));
-  let cartBtn = createField('a', new Map([
-   ['class', 'add_cart_button'],
+  let addBtn = createField('a', new Map([
+   ['class', 'button add_cart_button'],
    ['id', `${elem['id']}`]
   ]));
-  cartBtn.innerText = 'Add to cart';
-  divButtons.append(cartBtn);
+  addBtn.innerText = 'Add to cart';
+  divButtons.append(addBtn);
   elemList.append(divButtons);
   productsList.append(elemList);
 
-  cartBtn.addEventListener('click', event => {
+  addBtn.addEventListener('click', event => {
    event.preventDefault();
-   document.cookie = `cart[id][${elem['id']}]=${elem['id']}`
-
-   // this.editContact(event);
+   setCookie(event.target.id);
   });
  });
 }

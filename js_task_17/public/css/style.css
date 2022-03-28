@@ -34,12 +34,20 @@ li {
     margin: 0 auto;
 }
 
-.add_cart_button {
+.button {
     background-color: rgba(255, 0, 0, .6);
     padding: 10px;
     color: #FFFFFF;
     border-radius: 10px;
     font-weight: bold;
+}
+
+.add_cart_button {
+    background-color: rgba(0, 0, 255, .6);
+}
+
+.remove_cart_button {
+    background-color: rgba(255, 0, 0, .6);
 }
 
 .list_item {
@@ -63,6 +71,10 @@ main {
 
 .buttons {
     min-width: 120px;
+}
+
+.cart_buttons {
+    min-width: 200px;
 }
 
 .list_item:nth-child(odd) {

@@ -49,6 +49,14 @@ export default class Nav extends GeneralComponent {
   main.innerHTML = '';
   if (page.name === 'home') {
    renderProducts();
+  }
+  if (page.name === 'product') {
+   let hash = window.location.hash.slice(1);
+   if (hash.indexOf('/') !== -1) {
+    let index = hash.indexOf('/');
+    let id = hash.slice(index + 1);
+    renderProducts(id);
+   }
   } else {
    console.log(page);
    let h1 = document.createElement('h1');
@@ -60,6 +68,11 @@ export default class Nav extends GeneralComponent {
  }
 
  showPage(hash) {
+  if (hash.indexOf('/') !== -1) {
+   let index = hash.indexOf('/');
+   hash = hash.slice(0, index);
+  }
+
   if (hash === '') {
    hash = 'home';
   }

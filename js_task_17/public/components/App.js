@@ -2,6 +2,7 @@ import Header from "./Header";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import GeneralComponent from "./GeneralCompanent";
+import {getStorage, setStorage} from './storage.js';
 
 export default class App extends GeneralComponent {
  constructor() {
@@ -9,7 +10,7 @@ export default class App extends GeneralComponent {
  }
 
  async init() {
-  if (!this.storage.length) {
+  if (!getStorage().length) {
    await this.getData();
   }
 
@@ -43,22 +44,9 @@ export default class App extends GeneralComponent {
   )
   .then(data => {
    if (data) {
-    this.storage = data
+    setStorage(data);
    }
   });
- }
-
- set storage(data) {
-  localStorage.setItem('data', JSON.stringify(data));
- }
-
- get storage() {
-  let localData = localStorage.getItem('data');
-  if (localData && localData.length > 0) {
-   return JSON.parse(localData);
-  }
-
-  return {};
  }
 }
 

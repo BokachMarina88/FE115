@@ -47,6 +47,7 @@ export default class Nav extends GeneralComponent {
   }
   let main = document.querySelector('.main');
   main.innerHTML = '';
+
   if (page.name === 'home') {
    renderProducts();
   }
@@ -58,7 +59,6 @@ export default class Nav extends GeneralComponent {
     renderProducts(id);
    }
   } else {
-   console.log(page);
    let h1 = document.createElement('h1');
    h1.innerText = page.title;
    let p = document.createElement('p');
@@ -87,12 +87,14 @@ export default class Nav extends GeneralComponent {
  renderLinks(list) {
   this.data = this.menuLinks();
   this.data.forEach(dataList => {
-   let item = document.createElement('li');
-   let a = document.createElement('a');
-   a.setAttribute('href', `#${dataList.name}`);
-   a.innerText = dataList.title;
-   item.append(a);
-   list.append(item);
+   if(!dataList.hide) {
+    let item = document.createElement('li');
+    let a = document.createElement('a');
+    a.setAttribute('href', `#${dataList.name}`);
+    a.innerText = dataList.title;
+    item.append(a);
+    list.append(item);
+   }
   });
 
   return list;
@@ -103,17 +105,20 @@ export default class Nav extends GeneralComponent {
    {
     name: 'home',
     title: 'Home',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis consequatur cum dolores ducimus eius eveniet ex facere, ipsa iusto laborum laudantium minus odit pariatur perspiciatis possimus quis velit. Necessitatibus.'
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis consequatur cum dolores ducimus eius eveniet ex facere, ipsa iusto laborum laudantium minus odit pariatur perspiciatis possimus quis velit. Necessitatibus.',
+    hide: false
    },
    {
     name: 'cart',
     title: 'Cart',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis consequatur cum dolores ducimus eius eveniet ex facere, ipsa iusto laborum laudantium minus odit pariatur perspiciatis possimus quis velit. Necessitatibus.'
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis consequatur cum dolores ducimus eius eveniet ex facere, ipsa iusto laborum laudantium minus odit pariatur perspiciatis possimus quis velit. Necessitatibus.',
+    hide: false
    },
    {
     name: 'product',
     title: 'Product details',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis consequatur cum dolores ducimus eius eveniet ex facere, ipsa iusto laborum laudantium minus odit pariatur perspiciatis possimus quis velit. Necessitatibus.'
+    content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus blanditiis consequatur cum dolores ducimus eius eveniet ex facere, ipsa iusto laborum laudantium minus odit pariatur perspiciatis possimus quis velit. Necessitatibus.',
+    hide: true
    },
   ];
  }

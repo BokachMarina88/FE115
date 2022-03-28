@@ -16,8 +16,6 @@ export default class Main extends GeneralComponent {
   this.render(document.getElementById('app'), element);
 
   let hash = window.location.hash.slice(1);
-
-  console.log(hash);
   this.showPage(hash);
 
   window.addEventListener('hashchange', async () => {

@@ -1,18 +1,18 @@
 import GeneralComponent from "./GeneralCompanent";
 import createField from "./renderData";
 
-export default class Nav extends GeneralComponent {
+class Nav extends GeneralComponent {
  constructor() {
   super();
   this.data;
  }
 
  init() {
-  this.show();
+  return this.create('nav', [{label: 'class', value: 'nav'}]);
  }
 
  show() {
-  let element = this.create('nav', [{label: 'class', value: 'nav'}]);
+  // let element = this.create('nav', [{label: 'class', value: 'nav'}]);
 
   let divList = this.create('div', [{label: 'class', value: 'ul_nav'}]);
   let list = this.create('ul');
@@ -33,14 +33,14 @@ export default class Nav extends GeneralComponent {
   ]));
   divCart.append(cartCount, cartImg, cartAmount);
 
-  element.append(divList, divCart);
-  this.render(document.getElementById('app'), element);
+  // this.element.append(divList, divCart);
+  // this.render(document.getElementById('app'), element);
  }
 
  renderLinks(list) {
   this.data = this.menuLinks();
   this.data.forEach(dataList => {
-   if(!dataList.hide) {
+   if (!dataList.hide) {
     let item = document.createElement('li');
     let a = document.createElement('a');
     a.setAttribute('href', `#${dataList.name}`);
@@ -74,4 +74,4 @@ export default class Nav extends GeneralComponent {
  }
 }
 
-
+export default new Nav().init();

@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Head from "./Head";
 import Nav from "./Nav";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -16,23 +16,19 @@ export default class App extends GeneralComponent {
   }
 
   this.renderHead();
-  this.create('div', [{label: 'id', value: 'app'}]);
   this.render(document.body, this.create('div', [{label: 'id', value: 'app'}]));
-
-  new Header().init();
-  new Nav().init();
-  new Main().init();
-  new Footer().init();
+  this.render(document.getElementById('app'), Head, Nav,  Main, Footer);
  }
 
  renderHead() {
-
-  this.render(document.head, this.create('meta', [{label: 'charset', value: 'UTF-8'}]));
-  this.render(document.head, this.create('title', [], 'E_shop'));
-  this.render(document.head, this.create('link', [{label: 'href', value: "./css/style.css"}, {
+  let meta = this.create('meta', [{label: 'charset', value: 'UTF-8'}]);
+  let title = this.create('title', [], 'E_shop');
+  let link = this.create('link', [{label: 'href', value: "./css/style.css"}, {
    label: 'rel',
    value: "stylesheet"
-  }]));
+  }]);
+
+  this.render(document.head, meta, title, link);
  }
 
  async getData() {

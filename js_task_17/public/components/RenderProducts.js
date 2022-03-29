@@ -1,10 +1,10 @@
-import createField from './RenderData.js';
+import createField, {addClasses, removeClasses} from './RenderData.js';
 import {getStorage} from "./Storage";
-import {getCookie, removeValueCookie, setCookie} from "./Cookies";
-import {cartAmount, cartSum} from "./renderCart";
+import {getCookie, setCookie} from "./Cookies";
+import {cartAmount, cartSum} from "./RenderCart";
 
 export default function renderProducts(id = null) {
-  let dataList;
+ let dataList;
  let arr;
  let disabledArr = ['id'];
 
@@ -119,12 +119,10 @@ export default function renderProducts(id = null) {
   ]));
   cartElem.textContent = 'Was added to cart';
   if (getCookie(+elem['id']).length) {
-   input.classList.add('hide_button');
-   addBtn.classList.add('hide_button');
+   addClasses('hide_button', input, addBtn);
   } else {
-   cartElem.classList.add('hide_button');
-   addBtn.classList.add('show_button');
-   input.classList.add('show_button');
+   addClasses('hide_button', cartElem);
+   addClasses('show_button', addBtn, input);
   }
 
   divButtons.append(input, addBtn, cartElem);
@@ -136,12 +134,10 @@ export default function renderProducts(id = null) {
    setCookie(event.target);
    if (getCookie(+elem['id']).length) {
     if (addBtn.classList.contains('show_button')) {
-     addBtn.classList.remove('show_button');
-     addBtn.classList.add('hide_button');
-     cartElem.classList.remove('hide_button');
-     cartElem.classList.add('show_button');
-     input.classList.remove('show_button');
-     input.classList.add('hide_button');
+     removeClasses('show_button', addBtn, input)
+     addClasses('hide_button', addBtn, input);
+     removeClasses('hide_button', cartElem)
+     addClasses('show_button', cartElem);
     }
     cartSum();
     cartAmount();

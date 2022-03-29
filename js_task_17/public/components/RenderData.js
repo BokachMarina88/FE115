@@ -1,5 +1,3 @@
-import Nav from "./Nav";
-
 export default function createField(formElem, elemAttrs = []) {
  let exceptTags = ['div', 'li', 'button', 'span', 'input', 'p', 'a'];
  let field = document.createElement(formElem);
@@ -26,4 +24,12 @@ export function clearTags(className, element) {
  if (element !== 'product') {
   document.querySelector('.' + element).classList.add(className.slice(1));
  }
+}
+
+export function addClasses(className, ...elements) {
+ elements.forEach(element => element.classList.add(className));
+}
+
+export function removeClasses(className, ...elements) {
+ elements.forEach(element => element.classList.remove(className));
 }

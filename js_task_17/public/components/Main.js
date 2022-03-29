@@ -1,6 +1,6 @@
 import GeneralComponent from "./GeneralCompanent";
-import renderProducts from "./renderProducts";
-import renderCart from "./renderCart";
+import renderProducts from "./RenderProducts";
+import renderCart from "./RenderCart";
 import {getStorage} from "./Storage";
 import {getData, itemData} from "./ProductAPI";
 import {clearTags} from "./RenderData";

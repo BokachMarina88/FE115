@@ -1,4 +1,4 @@
-import {setStorage} from "./storage";
+import {setStorage} from "./Storage";
 
 const url = 'https://fakestoreapi.com/products';
 
@@ -17,7 +17,7 @@ export async function getData() {
  });
 }
 
-async function itemData(id) {
+export async function itemData(id) {
  return await fetch(`${url}/${id}`)
  .then(resp => resp.json())
  .then(data => {

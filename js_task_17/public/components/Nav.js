@@ -1,5 +1,5 @@
 import GeneralComponent from "./GeneralCompanent";
-import createField from "./renderData";
+import createField from "./RenderData";
 
 class Nav extends GeneralComponent {
  constructor() {
@@ -28,8 +28,6 @@ class Nav extends GeneralComponent {
    ['class', 'cart_amount']
   ]));
   divCart.append(cartCount, cartImg, cartAmount);
-
-  // let element = document.querySelector('.nav');
   element.append(divList, divCart);
 
   return element;

@@ -1,6 +1,6 @@
-import createField from './renderData.js';
-import {getStorage} from "./storage";
-import {getCookie, removeValueCookie, setCookie} from "./cookies";
+import createField from './RenderData.js';
+import {getStorage} from "./Storage";
+import {getCookie, removeValueCookie, setCookie} from "./Cookies";
 import {cartAmount, cartSum} from "./renderCart";
 
 export default function renderProducts(id = null) {

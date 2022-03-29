@@ -1,8 +1,8 @@
 import GeneralComponent from "./GeneralCompanent";
 import renderProducts from "./renderProducts";
 import renderCart from "./renderCart";
-import {getStorage} from "./storage";
-import {getData} from "./ProductAPI";
+import {getStorage} from "./Storage";
+import {getData, itemData} from "./ProductAPI";
 
 class Main extends GeneralComponent {
  constructor() {
@@ -13,15 +13,24 @@ class Main extends GeneralComponent {
  init() {
   this.element = this.create('main', [{label: 'class', value: 'main'}]);
 
-  this.routing();
-  window.addEventListener('hashchange', async _ => {
+  window.addEventListener('hashchange', _ => {
+   this.routing();
+  });
+
+  window.addEventListener('load', _ => {
+   const a = document.querySelectorAll('.ul_nav a');
+   a.forEach(a => {
+    a.addEventListener('click', _ => {
+     this.routing();
+    })
+   })
    this.routing();
   });
 
   return this.element;
  }
 
- async pageRender(hash) {
+ pageRender(hash) {
   import(`./${hash}.js`).then(module => {
    this.element.innerHTML = '';
    this.element.append(module.default);
@@ -29,13 +38,19 @@ class Main extends GeneralComponent {
   });
  }
 
- fillPageData(hash) {
+ async fillPageData(hash) {
+  if (!getStorage().length) {
+   await getData();
+  }
   if (hash === 'Home') {
    renderProducts();
   } else if (hash === 'Product') {
    let hash = window.location.hash.slice(1);
    if (hash.indexOf('/') !== -1) {
     let value = hash.split('/');
+    if (!getStorage().length) {
+     await itemData(value[1]);
+    }
     renderProducts(value[1]);
    }
   } else if (hash === 'Cart') {
@@ -57,10 +72,7 @@ class Main extends GeneralComponent {
   return hash[0].toUpperCase() + hash.substring(1);
  }
 
- async routing() {
-  if (!getStorage().length) {
-   await getData();
-  }
+ routing() {
   let hash = this.getHash();
   this.pageRender(hash);
  }

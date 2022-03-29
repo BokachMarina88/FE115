@@ -1,6 +1,6 @@
-import createField from './renderData.js';
-import {getStorage} from "./storage";
-import {getCookies, removeValueCookie} from "./cookies";
+import createField from './RenderData.js';
+import {getStorage} from "./Storage";
+import {getCookies, removeValueCookie} from "./Cookies";
 
 export default function renderCart() {
  let arrCart = [];
@@ -89,6 +89,7 @@ export default function renderCart() {
    removeBtn.addEventListener('click', event => {
     event.preventDefault();
     removeValueCookie(event.target);
+    document.querySelector('.products_list').remove();
     renderCart();
     cartSum();
     cartAmount();

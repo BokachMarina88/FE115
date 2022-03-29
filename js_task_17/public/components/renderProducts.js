@@ -4,7 +4,7 @@ import {getCookie, removeValueCookie, setCookie} from "./cookies";
 import {cartAmount, cartSum} from "./renderCart";
 
 export default function renderProducts(id = null) {
- let dataList;
+  let dataList;
  let arr;
  let disabledArr = ['id'];
 

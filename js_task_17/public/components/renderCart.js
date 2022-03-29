@@ -16,7 +16,6 @@ export default function renderCart() {
  if (dataList.length) {
   let arr = ['id', 'title', 'price'];
 
-  main.innerHTML = '';
   let productsList = document.createElement('ul');
   productsList.setAttribute('class', 'products_list');
   main.append(productsList);

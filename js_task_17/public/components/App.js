@@ -3,7 +3,6 @@ import Nav from "./Nav";
 import Main from "./Main";
 import Footer from "./Footer";
 import GeneralComponent from "./GeneralCompanent";
-import {getStorage, setStorage} from './storage.js';
 
 export default class App extends GeneralComponent {
  constructor() {
@@ -11,13 +10,9 @@ export default class App extends GeneralComponent {
  }
 
  async init() {
-  if (!getStorage().length) {
-   await this.getData();
-  }
-
   this.renderHead();
   this.render(document.body, this.create('div', [{label: 'id', value: 'app'}]));
-  this.render(document.getElementById('app'), Head, Nav,  Main, Footer);
+  this.render(document.getElementById('app'), Head, Nav, Main, Footer);
  }
 
  renderHead() {
@@ -29,22 +24,6 @@ export default class App extends GeneralComponent {
   }]);
 
   this.render(document.head, meta, title, link);
- }
-
- async getData() {
-  let url = 'https://fakestoreapi.com/products';
-  await fetch(url)
-  .then(response => {
-    if (response.status === 200) {
-     return response.json();
-    }
-   }
-  )
-  .then(data => {
-   if (data) {
-    setStorage(data);
-   }
-  });
  }
 }
 

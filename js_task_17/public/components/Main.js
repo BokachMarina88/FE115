@@ -1,48 +1,50 @@
 import GeneralComponent from "./GeneralCompanent";
 import renderProducts from "./renderProducts";
-import Nav from "./Nav";
 import renderCart from "./renderCart";
+import {getStorage} from "./storage";
+import {getData} from "./ProductAPI";
 
-export default class Main extends GeneralComponent {
+class Main extends GeneralComponent {
  constructor() {
   super();
+  this.element;
  }
 
  init() {
-  this.show();
+  this.element = this.create('main', [{label: 'class', value: 'main'}]);
+
+  this.routing();
+  window.addEventListener('hashchange', async _ => {
+   this.routing();
+  });
+
+  return this.element;
  }
 
- show() {
-  let element = this.create('main', [{label: 'class', value: 'main'}]);
-  this.render(document.getElementById('app'), element);
-
-  let hash = window.location.hash.slice(1);
-  this.showPage(hash);
-
-  window.addEventListener('hashchange', async () => {
-   hash = window.location.hash.slice(1);
-   this.showPage(hash);
+ async pageRender(hash) {
+  import(`./${hash}.js`).then(module => {
+   this.element.innerHTML = '';
+   this.element.append(module.default);
+   this.fillPageData(hash);
   });
  }
 
- pageRender(page) {
-  let main = document.querySelector('.main');
-  main.innerHTML = '';
-
-  if (page.name === 'home') {
+ fillPageData(hash) {
+  if (hash === 'Home') {
    renderProducts();
-  } else if (page.name === 'product') {
+  } else if (hash === 'Product') {
    let hash = window.location.hash.slice(1);
    if (hash.indexOf('/') !== -1) {
     let value = hash.split('/');
     renderProducts(value[1]);
    }
-  } else if (page.name === 'cart') {
+  } else if (hash === 'Cart') {
    renderCart();
   }
  }
 
- showPage(hash) {
+ getHash() {
+  let hash = location.hash.slice(1);
   if (hash.indexOf('/') !== -1) {
    let value = hash.split('/');
    hash = value[0];
@@ -52,15 +54,18 @@ export default class Main extends GeneralComponent {
    hash = 'home';
   }
 
-  let nav = new Nav();
-  let data = nav.menuLinks();
+  return hash[0].toUpperCase() + hash.substring(1);
+ }
 
-  let page = data.find(page => {
-   return page.name === hash ? page : null;
-  });
-
-  this.pageRender(page);
+ async routing() {
+  if (!getStorage().length) {
+   await getData();
+  }
+  let hash = this.getHash();
+  this.pageRender(hash);
  }
 }
+
+export default new Main().init();
 
 

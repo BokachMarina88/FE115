@@ -8,11 +8,7 @@ class Nav extends GeneralComponent {
  }
 
  init() {
-  return this.create('nav', [{label: 'class', value: 'nav'}]);
- }
-
- show() {
-  // let element = this.create('nav', [{label: 'class', value: 'nav'}]);
+  let element = this.create('nav', [{label: 'class', value: 'nav'}]);
 
   let divList = this.create('div', [{label: 'class', value: 'ul_nav'}]);
   let list = this.create('ul');
@@ -33,8 +29,10 @@ class Nav extends GeneralComponent {
   ]));
   divCart.append(cartCount, cartImg, cartAmount);
 
-  // this.element.append(divList, divCart);
-  // this.render(document.getElementById('app'), element);
+  // let element = document.querySelector('.nav');
+  element.append(divList, divCart);
+
+  return element;
  }
 
  renderLinks(list) {

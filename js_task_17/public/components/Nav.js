@@ -37,9 +37,12 @@ class Nav extends GeneralComponent {
   this.data = this.menuLinks();
   this.data.forEach(dataList => {
    if (!dataList.hide) {
-    let item = document.createElement('li');
-    let a = document.createElement('a');
-    a.setAttribute('href', `#${dataList.name}`);
+    let item = createField('li');
+    let activeClass = (dataList.name === 'home') ? 'active' : '';
+    let a = createField('a', new Map([
+     ['href', `#${dataList.name}`],
+     ['class', `link ${dataList.name} ${activeClass}`]
+    ]));
     a.innerText = dataList.title;
     item.append(a);
     list.append(item);

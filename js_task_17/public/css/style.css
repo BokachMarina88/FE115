@@ -142,13 +142,23 @@ main {
     color: red;
 }
 
+
 .points,
 .total {
     width: 30px;
     margin-right: 10px;
+    outline: 0;
+    border: 0;
+    font-weight: bold;
+    font-size: 25px;
+    background-color: rgba(192, 192, 192, 0);
 }
 
-.in_cart{
+.in_cart {
     color: red;
     font-weight: bold;
+}
+
+a.active {
+    color: red;
 }

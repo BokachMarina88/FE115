@@ -3,6 +3,7 @@ import renderProducts from "./renderProducts";
 import renderCart from "./renderCart";
 import {getStorage} from "./Storage";
 import {getData, itemData} from "./ProductAPI";
+import {clearTags} from "./RenderData";
 
 class Main extends GeneralComponent {
  constructor() {
@@ -68,6 +69,8 @@ class Main extends GeneralComponent {
   if (hash === '') {
    hash = 'home';
   }
+
+  clearTags('.active', hash);
 
   return hash[0].toUpperCase() + hash.substring(1);
  }

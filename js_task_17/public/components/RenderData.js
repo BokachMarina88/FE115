@@ -1,5 +1,7 @@
-export default function createField(formElem, elemAttrs =[]) {
- let exceptTags = ['div', 'li', 'button', 'span', 'input', 'p'];
+import Nav from "./Nav";
+
+export default function createField(formElem, elemAttrs = []) {
+ let exceptTags = ['div', 'li', 'button', 'span', 'input', 'p', 'a'];
  let field = document.createElement(formElem);
 
  if (!exceptTags.includes(formElem)) {
@@ -13,4 +15,15 @@ export default function createField(formElem, elemAttrs =[]) {
  }
 
  return field;
+}
+
+export function clearTags(className, element) {
+ let elem = document.querySelectorAll(className);
+ if (elem.length > 0) {
+  elem.forEach(item => item.classList.remove(className.slice(1)));
+ }
+
+ if (element !== 'product') {
+  document.querySelector('.' + element).classList.add(className.slice(1));
+ }
 }

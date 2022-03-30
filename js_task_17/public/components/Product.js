@@ -1,9 +1,9 @@
-import GeneralComponent from "./GeneralCompanent";
+import {create} from "./RenderData";
 
-class Product extends GeneralComponent {
+function Product() {
 
- init() {
-  return this.create('div', [{label: 'class', value: 'product_page'}], `<h1>Product Page</h1>`);
+ this.init = () => {
+  return create('div', [{label: 'class', value: 'product_page'}], `<h1>Product Page</h1>`);
  }
 }
 

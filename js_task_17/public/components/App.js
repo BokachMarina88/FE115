@@ -2,28 +2,25 @@ import Head from "./Head";
 import Nav from "./Nav";
 import Main from "./Main";
 import Footer from "./Footer";
-import GeneralComponent from "./GeneralCompanent";
+import {create, render} from "./RenderData";
 
-export default class App extends GeneralComponent {
- constructor() {
-  super();
- }
+export default function App() {
 
- async init() {
+ this.init = async () => {
   this.renderHead();
-  this.render(document.body, this.create('div', [{label: 'id', value: 'app'}]));
-  this.render(document.getElementById('app'), Head, Nav, Main, Footer);
+  render(document.body, create('div', [{label: 'id', value: 'app'}]));
+  render(document.getElementById('app'), Head, Nav, Main, Footer);
  }
 
- renderHead() {
-  let meta = this.create('meta', [{label: 'charset', value: 'UTF-8'}]);
-  let title = this.create('title', [], 'E_shop');
-  let link = this.create('link', [{label: 'href', value: "./css/style.css"}, {
+ this.renderHead = () => {
+  let meta = create('meta', [{label: 'charset', value: 'UTF-8'}]);
+  let title = create('title', [], 'E_shop');
+  let link = create('link', [{label: 'href', value: "./css/style.css"}, {
    label: 'rel',
    value: "stylesheet"
   }]);
 
-  this.render(document.head, meta, title, link);
+  render(document.head, meta, title, link);
  }
 }
 

@@ -1,9 +1,9 @@
-import GeneralComponent from "./GeneralCompanent";
+import {create} from "./RenderData";
 
-class Home extends GeneralComponent {
+function Home() {
 
- init() {
-  return this.create('div', [{label: 'class', value: 'home_page'}], `<h1>Home Page</h1>`);
+ this.init = () => {
+  return create('div', [{label: 'class', value: 'home_page'}], `<h1>Home Page</h1>`);
  }
 }
 

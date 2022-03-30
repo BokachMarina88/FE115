@@ -1,12 +1,9 @@
-import GeneralComponent from "./GeneralCompanent";
+import {create} from "./RenderData";
 
-class Head extends GeneralComponent {
- constructor() {
-  super();
- }
+function Head() {
 
- init() {
-  return this.create('header', [{label: 'class', value: 'header'}]);
+ this.init = () => {
+  return create('header', [{label: 'class', value: 'header'}]);
  }
 }
 

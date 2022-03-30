@@ -1,9 +1,9 @@
-import GeneralComponent from "./GeneralCompanent";
+import {create} from "./RenderData";
 
-class Cart extends GeneralComponent {
+function Cart() {
 
- init() {
-  return this.create('div', [{label: 'class', value: 'cart_page'}], `<h1>Cart Page</h1>`);
+ this.init = () => {
+  return create('div', [{label: 'class', value: 'cart_page'}], `<h1>Cart Page</h1>`);
  }
 }
 

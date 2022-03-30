@@ -33,3 +33,22 @@ export function addClasses(className, ...elements) {
 export function removeClasses(className, ...elements) {
  elements.forEach(element => element.classList.remove(className));
 }
+
+export function create(type, options = [], text = '') {
+ let element = document.createElement(type);
+
+ if (options.length) {
+  options.forEach(item => {
+   element.setAttribute(item.label, item.value)
+  })
+ }
+ if (text) {
+  element.innerHTML = text;
+ }
+
+ return element;
+}
+
+export function render(to, ...elems) {
+ elems.forEach(elem => to.appendChild(elem));
+}

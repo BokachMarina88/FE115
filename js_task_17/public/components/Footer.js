@@ -1,12 +1,9 @@
-import GeneralComponent from "./GeneralCompanent";
+import {create} from "./RenderData";
 
-class Footer extends GeneralComponent {
- constructor() {
-  super();
- }
+function Footer() {
 
- init() {
-  return this.create('footer', [{label: 'class', value: 'footer'}]);
+ this.init = () => {
+  return create('footer', [{label: 'class', value: 'footer'}]);
  }
 }
 

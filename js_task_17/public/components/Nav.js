@@ -1,22 +1,18 @@
-import GeneralComponent from "./GeneralCompanent";
 import createField from "./RenderData";
+import {create} from "./RenderData";
 
-class Nav extends GeneralComponent {
- constructor() {
-  super();
-  this.data;
- }
+function Nav() {
 
- init() {
-  let element = this.create('nav', [{label: 'class', value: 'nav'}]);
+ this.init = () => {
+  let element = create('nav', [{label: 'class', value: 'nav'}]);
 
-  let divList = this.create('div', [{label: 'class', value: 'ul_nav'}]);
-  let list = this.create('ul');
+  let divList = create('div', [{label: 'class', value: 'ul_nav'}]);
+  let list = create('ul');
   this.renderLinks(list);
   divList.append(list);
 
-  let divCart = this.create('div');
-  let cartImg = this.create('img', [
+  let divCart = create('div');
+  let cartImg = create('img', [
    {label: 'src', value: './img/cart.jpg'},
    {label: 'alt', value: 'Cart'},
    {label: 'class', value: 'cart'}
@@ -33,9 +29,9 @@ class Nav extends GeneralComponent {
   return element;
  }
 
- renderLinks(list) {
-  this.data = this.menuLinks();
-  this.data.forEach(dataList => {
+ this.renderLinks = (list) => {
+  let data = this.menuLinks();
+  data.forEach(dataList => {
    if (!dataList.hide) {
     let item = createField('li');
     let activeClass = (dataList.name === 'home') ? 'active' : '';
@@ -52,7 +48,7 @@ class Nav extends GeneralComponent {
   return list;
  }
 
- menuLinks() {
+ this.menuLinks = () => {
   return [
    {
     name: 'home',

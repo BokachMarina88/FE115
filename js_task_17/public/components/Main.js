@@ -1,18 +1,14 @@
-import GeneralComponent from "./GeneralCompanent";
 import renderProducts from "./RenderProducts";
 import renderCart from "./RenderCart";
 import {getStorage} from "./Storage";
 import {getData, itemData} from "./ProductAPI";
-import {clearTags} from "./RenderData";
+import {clearTags, create} from "./RenderData";
 
-class Main extends GeneralComponent {
- constructor() {
-  super();
-  this.element;
- }
+function Main() {
+ let element;
 
- init() {
-  this.element = this.create('main', [{label: 'class', value: 'main'}]);
+ this.init = () => {
+  this.element = create('main', [{label: 'class', value: 'main'}]);
 
   window.addEventListener('hashchange', _ => {
    this.routing();
@@ -31,7 +27,7 @@ class Main extends GeneralComponent {
   return this.element;
  }
 
- pageRender(hash) {
+ this.pageRender = (hash) => {
   import(`./${hash}.js`).then(module => {
    this.element.innerHTML = '';
    this.element.append(module.default);
@@ -39,7 +35,7 @@ class Main extends GeneralComponent {
   });
  }
 
- async fillPageData(hash) {
+ this.fillPageData = async (hash) => {
   if (!getStorage().length) {
    await getData();
   }
@@ -59,7 +55,7 @@ class Main extends GeneralComponent {
   }
  }
 
- getHash() {
+ this.getHash = () => {
   let hash = location.hash.slice(1);
   if (hash.indexOf('/') !== -1) {
    let value = hash.split('/');
@@ -75,7 +71,7 @@ class Main extends GeneralComponent {
   return hash[0].toUpperCase() + hash.substring(1);
  }
 
- routing() {
+ this.routing = () => {
   let hash = this.getHash();
   this.pageRender(hash);
  }

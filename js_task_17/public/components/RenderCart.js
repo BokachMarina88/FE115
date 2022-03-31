@@ -1,6 +1,6 @@
 import createField from './RenderData.js';
 import {getStorage} from "./Storage";
-import {getCookies, removeValueCookie} from "./Cookies";
+import {getCookies, removeCookie, updateValueCookie} from "./Cookies";
 
 export default function renderCart() {
  let arrCart = [];
@@ -14,7 +14,7 @@ export default function renderCart() {
  }
 
  if (dataList.length) {
-  let arr = ['id', 'title', 'price'];
+  let arr = ['title', 'price'];
 
   let productsList = document.createElement('ul');
   productsList.setAttribute('class', 'products_list');
@@ -78,21 +78,21 @@ export default function renderCart() {
     ['class', 'buttons']
    ]));
    let removeBtn = createField('a', new Map([
-    ['class', 'button remove_cart_button'],
-    ['id', `${elem['id']}`]
+    ['class', 'button remove_cart_button']
    ]));
    removeBtn.innerText = 'Remove from cart';
    divButtons.append(divTotal, removeBtn);
    elemList.append(divButtons);
    productsList.append(elemList);
 
-   removeBtn.addEventListener('click', event => {
-    event.preventDefault();
-    removeValueCookie(event.target);
-    document.querySelector('.products_list').remove();
-    renderCart();
-    cartSum();
-    cartAmount();
+   removeBtn.addEventListener('click', _ => {
+    removeCookie(+elem['id']);
+    refresh();
+   });
+
+   divTotal.addEventListener('click', event => {
+    updateValueCookie(event.target, +elem['id']);
+    refresh();
    });
   });
  } else {
@@ -142,4 +142,11 @@ export function cartPointsByElement(id) {
  getCookies().forEach(item => (item.key === id) ? elemPoint = item.value : null);
 
  return elemPoint;
+}
+
+export function refresh() {
+ document.querySelector('.products_list').remove();
+ renderCart();
+ cartSum();
+ cartAmount();
 }

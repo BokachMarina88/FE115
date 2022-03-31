@@ -102,8 +102,7 @@ export default function renderProducts(id = null) {
    ['class', 'buttons']
   ]));
   let addBtn = createField('a', new Map([
-   ['class', 'button add_cart_button'],
-   ['id', `${elem['id']}`]
+   ['class', 'button add_cart_button']
   ]));
   addBtn.innerText = 'Add to cart';
   let input = createField('input', new Map([
@@ -130,8 +129,7 @@ export default function renderProducts(id = null) {
   productsList.append(elemList);
 
   addBtn.addEventListener('click', event => {
-   event.preventDefault();
-   setCookie(event.target);
+   setCookie(event.target, +elem['id']);
    if (getCookie(+elem['id']).length) {
     if (addBtn.classList.contains('show_button')) {
      removeClasses('show_button', addBtn, input)
@@ -141,7 +139,6 @@ export default function renderProducts(id = null) {
     }
     cartSum();
     cartAmount();
-
    }
   });
  });

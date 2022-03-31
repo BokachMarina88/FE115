@@ -96,7 +96,6 @@ main {
     word-wrap: break-word;
 }
 
-
 .list_item div:not(:last-child) {
     margin-bottom: 10px;
 }
@@ -141,7 +140,6 @@ main {
     font-weight: bold;
     color: red;
 }
-
 
 .points,
 .total {

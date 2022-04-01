@@ -1,11 +1,9 @@
-import renderProducts from "./RenderProducts";
-import renderCart from "./RenderCart";
 import {getStorage} from "./Storage";
-import {getData, itemData} from "./ProductAPI";
+import {getData} from "./ProductAPI";
 import {clearTags, create} from "./RenderData";
+import product from "./Product";
 
 function Main() {
- let element;
 
  this.init = () => {
   this.element = create('main', [{label: 'class', value: 'main'}]);
@@ -28,31 +26,28 @@ function Main() {
  }
 
  this.pageRender = (hash) => {
-  import(`./${hash}.js`).then(module => {
-   this.element.innerHTML = '';
-   this.element.append(module.default);
-   this.fillPageData(hash);
-  });
+  if (hash === 'Product') {
+   let localHash = window.location.hash.slice(1);
+   if (localHash.indexOf('/') !== -1) {
+    let value = localHash.split('/');
+    let item = product.render(value[1]);
+    this.element.append(item);
+    document.title = product.title;
+   }
+  } else {
+   import(`./${hash}.js`).then(module => {
+    this.element.innerHTML = '';
+    this.element.append(module.default);
+    document.title = module.title;
+   });
+  }
  }
 
  this.fillPageData = async (hash) => {
   if (!getStorage().length) {
    await getData();
   }
-  if (hash === 'Home') {
-   renderProducts();
-  } else if (hash === 'Product') {
-   let hash = window.location.hash.slice(1);
-   if (hash.indexOf('/') !== -1) {
-    let value = hash.split('/');
-    if (!getStorage().length) {
-     await itemData(value[1]);
-    }
-    renderProducts(value[1]);
-   }
-  } else if (hash === 'Cart') {
-   renderCart();
-  }
+
  }
 
  this.getHash = () => {
@@ -62,8 +57,8 @@ function Main() {
    hash = value[0];
   }
 
-  if (hash === '') {
-   hash = 'home';
+  if (hash === '' || hash === 'home') {
+   hash = 'catalog';
   }
 
   clearTags('.active', hash);

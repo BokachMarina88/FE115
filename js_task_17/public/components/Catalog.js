@@ -3,18 +3,22 @@ import {getStorage} from "./Storage";
 import {getCookie, setCookie} from "./Cookies";
 import {cart} from "./Cart";
 
-function Product() {
- this.title = 'Product';
+function Catalog() {
+ this.title = 'Catalog';
 
- this.render = (id) => {
-  let dataList;
-  let disabledArr = ['id', 'image'];
+ this.init = () => {
+  return this.render();
+ }
 
-  let page = create('div', [{label: 'class', value: 'product_page'}], `<h1>Product Page</h1>`);
+ this.render = () => {
+  let arr = ['title', 'price']
+  let disabledArr = ['id'];
+  let dataList = getStorage();
+
+  let page = create('div', [{label: 'class', value: 'product_page'}], `<h1>Catalog Page</h1>`);
   let productsList = create('ul', [{label: 'class', value: 'products_list'}]);
   page.append(productsList);
 
-  dataList = getStorage().filter(elem => elem.id === +id ? elem : null);
   if (dataList.length) {
    dataList.map(elem => {
     let elemList = createField('li', new Map([
@@ -27,7 +31,7 @@ function Product() {
        ['class', `${item[0]}`]
       ]));
       let a = createField('a', new Map([
-       ['href', '#'],
+       ['href', `/#product/${elem['id']}`],
       ]));
 
       let elemName = createField('img', new Map([
@@ -47,22 +51,7 @@ function Product() {
     Object.entries(elem).forEach((item) => {
      if (!disabledArr.includes(item[0])) {
       let divName = createField('div');
-      if (item[0] === 'rating') {
-       Object.entries(item[1]).forEach((elem) => {
-        let divName = createField('div');
-        let labelId = createField('span', new Map([
-         ['class', `label_element label_${elem[0]}`]
-        ]));
-        labelId.textContent = elem[0];
-        let elemName = createField('span', new Map([
-         ['class', `element ${elem[0]}`]
-        ]));
-        elemName.innerText = elem[1];
-        divName.append(labelId, elemName);
-        div.append(divName)
-        elemList.append(div);
-       });
-      } else {
+      if (arr.includes(item[0])) {
        let labelId = createField('span', new Map([
         ['class', `label_element label_${item[0]}`]
        ]));
@@ -126,10 +115,13 @@ function Product() {
 
   return page;
  }
+
+
 }
 
-let product = new Product();
-let title = product.title;
+let elem = new Catalog();
+let init = elem.init();
+let title = elem.title;
 
-export default product;
+export default init;
 export {title};

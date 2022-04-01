@@ -21,7 +21,8 @@ export function clearTags(className, element) {
   elem.forEach(item => item.classList.remove(className.slice(1)));
  }
 
- if (element !== 'product') {
+ let menuArr = ['product', 'catalog'];
+ if (!menuArr.includes(element)) {
   document.querySelector('.' + element).classList.add(className.slice(1));
  }
 }

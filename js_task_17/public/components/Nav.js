@@ -11,19 +11,23 @@ function Nav() {
   this.renderLinks(list);
   divList.append(list);
 
-  let divCart = create('div');
-  let cartImg = create('img', [
-   {label: 'src', value: './img/cart.jpg'},
-   {label: 'alt', value: 'Cart'},
-   {label: 'class', value: 'cart'}
-  ]);
+  let divCart = createField('div');
+  let aCart = createField('a', new Map([
+   ['href', '#cart']
+  ]));
+  let cartImg = createField('img', new Map([
+   ['src', './img/cart.jpg'],
+   ['alt', 'Cart'],
+   ['class', 'cart']
+  ]));
   let cartCount = createField('span', new Map([
    ['class', 'cart_count']
   ]));
   let cartAmount = createField('span', new Map([
    ['class', 'cart_amount']
   ]));
-  divCart.append(cartCount, cartImg, cartAmount);
+  aCart.append(cartImg);
+  divCart.append(cartCount, aCart, cartAmount);
   element.append(divList, divCart);
 
   return element;

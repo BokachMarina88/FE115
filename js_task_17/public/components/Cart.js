@@ -8,12 +8,13 @@ function Cart() {
  this.arr = ['id', 'title', 'price'];
 
  this.init = () => {
+  console.log("rendCarter");
   return this.render();
  }
 
  this.render = () => {
 
-  // console.log("render");
+  console.log("render");
   let arrCart = [];
   let dataList = [];
 
@@ -95,8 +96,8 @@ function Cart() {
 
     removeBtn.addEventListener('click', event => {
      removeCookie(+elem['id']);
-     this.render();
-     // event.target.closest('.list_item').remove();
+     // this.render();
+     event.target.closest('.list_item').remove();
      this.refresh();
     });
 

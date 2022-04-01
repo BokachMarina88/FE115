@@ -17,11 +17,4 @@ export async function getData() {
  });
 }
 
-export async function itemData(id) {
- return await fetch(`${url}/${id}`)
- .then(resp => resp.json())
- .then(data => {
-  return data;
- })
-}
 

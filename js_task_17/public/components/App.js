@@ -19,8 +19,12 @@ export default function App() {
    label: 'rel',
    value: "stylesheet"
   }]);
+  let linkLoader = create('link', [{label: 'href', value: "./css/loader.css"}, {
+   label: 'rel',
+   value: "stylesheet"
+  }]);
 
-  render(document.head, meta, title, link);
+  render(document.head, meta, title, link, linkLoader);
  }
 }
 

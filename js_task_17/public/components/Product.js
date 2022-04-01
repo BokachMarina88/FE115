@@ -26,17 +26,14 @@ function Product() {
       let divName = createField('div', new Map([
        ['class', `${item[0]}`]
       ]));
-      let a = createField('a', new Map([
-       ['href', '#'],
-      ]));
 
       let elemName = createField('img', new Map([
-       ['class', `${item[0]}`]
+       ['class', `${item[0]}`],
+       ['src', item[1]],
+       ['alt', item[0]]
       ]));
-      elemName.src = item[1];
-      elemName.alt = item[0];
-      divName.append(a);
-      a.append(elemName);
+
+      divName.append(elemName);
       elemList.append(divName);
      }
     });

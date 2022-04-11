@@ -169,9 +169,8 @@ function Cart() {
 }
 
 let cart = new Cart();
-let init = cart.init();
 let title = cart.title;
 let refresh = cart.refresh();
 
-export default init;
-export {title, refresh, cart};
+export default cart;
+export {title, refresh};

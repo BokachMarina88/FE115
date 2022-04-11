@@ -64,7 +64,7 @@ function Main() {
   } else {
    import(`./${hash}.js`).then(module => {
     this.element.innerHTML = '';
-    this.element.append(module.default);
+    this.element.append(module.default.init());
     document.title = module.title;
    });
   }

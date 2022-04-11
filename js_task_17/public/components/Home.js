@@ -8,9 +8,9 @@ function Home() {
  }
 }
 
-let elem = new Home();
-let init = elem.init();
-let title = elem.title;
+let home = new Home();
+let init = home.init();
+let title = home.title;
 
-export default init;
+export default home;
 export {title};

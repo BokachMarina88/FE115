@@ -1,7 +1,7 @@
 import createField, {addClasses, create, removeClasses} from "./RenderData";
 import {getStorage} from "./Storage";
 import {getCookie, setCookie} from "./Cookies";
-import {cart} from "./Cart";
+import cart from "./Cart";
 
 function Product() {
  this.title = 'Product';

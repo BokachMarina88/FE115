@@ -1,7 +1,7 @@
 import createField, {addClasses, create, removeClasses} from "./RenderData";
 import {getStorage} from "./Storage";
 import {getCookie, setCookie} from "./Cookies";
-import {cart} from "./Cart";
+import cart from "./Cart";
 
 function Catalog() {
  this.title = 'Catalog';
@@ -119,9 +119,9 @@ function Catalog() {
 
 }
 
-let elem = new Catalog();
-let init = elem.init();
-let title = elem.title;
+let catalog = new Catalog();
+let init = catalog.init();
+let title = catalog.title;
 
-export default init;
+export default catalog;
 export {title};

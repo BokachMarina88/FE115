@@ -1,0 +1,106 @@
+
+@media (max-width: 1152px) {
+    .container {
+        /*background: palegoldenrod;*/
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        /*background: grey;*/
+    }
+
+}
+
+
+@media (max-width: 995px) {
+    .container {
+        /*background: grey;*/
+    }
+
+    .help-support-flex
+    {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .help-support h2{
+        text-align: center;
+
+    }
+    .help-support-flex-end{
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 980px) {
+    .container {
+        /*background: grey;*/
+    }
+
+
+}
+
+@media (max-width: 800px) {
+    .container {
+        /*background: yellow;*/
+    }
+
+    .slider,
+    .quote {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        /*background: red;*/
+    }
+
+    .account-card-area {
+        text-align: center;
+    }
+
+    .single-image:hover h2 {
+        transform: none;
+    }
+
+    .men, .jewelery, .electronics, .women {
+        background-image: none;
+        background-color: rgba(0, 0, 0, .8);
+        height: 220px;
+    }
+
+    .shop-collection a {
+        right: 0;
+    }
+}
+
+@media (max-width: 425px) {
+    .container {
+        /*background: deepskyblue;*/
+    }
+
+    .visa-img{
+        background: none;
+        height: 0;
+    }
+
+    .visa-card {
+        padding: 0;
+    }
+}
+
+@media (max-width: 375px) {
+    .container {
+        /*background: none;*/
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        /*background: yellowgreen;*/
+    }
+}

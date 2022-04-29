@@ -6,6 +6,8 @@
 
 body {
     font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 ul {
@@ -585,4 +587,100 @@ a.slider-readmore {
     background: url(../image/visa.png) no-repeat;
     height: 33px;
     width: 367px;
+}
+
+h2.product-heading {
+    font-size: 24px;
+    line-height: 26px;
+    font-weight: bold;
+    color: #333333;
+}
+
+img.product-img {
+    width: 450px;
+    height: 520px;
+}
+
+.product-rating {
+    display: inline;
+}
+
+span.icon-star {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+}
+
+.icon-star-empty {
+    background: url("../image/star.png");
+}
+
+.icon-star-full {
+    background: url("../image/star_y.png");
+}
+
+.product-rate-caption {
+    font-size: 13px;
+    line-height: 20px;
+    color: #222222;
+}
+
+.pricing-rate {
+    font-size: 20px;
+    margin: 30px;
+    color: #ff343b;
+}
+
+.product-text {
+    color: #555;
+}
+
+.product-cart-area {
+    background: #f4f9ea;
+    border: 1px solid #dddddd;
+    padding: 10px;
+    margin-top: 18px;
+}
+
+.form-control {
+    display: block;
+    width: 190px;
+    padding: 5px 15px;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-field {
+    margin-bottom: 30px;
+}
+
+.button {
+    border: 2px solid #222222;
+    color: #222222;
+    background: #FFFFFF;
+    padding: 10px 0;
+    width: 190px;
+    height: 40px;
+    text-transform: uppercase;
+}
+
+.product-cart-area .button.add-cart-button:hover,
+.product-cart-area .add-favourite .ico:hover {
+    border: 2px solid #FF4F55;
+}
+
+.add-favourite .ico {
+    display: inline-block;
+    width: 190px;
+    height: 40px;
+    border: 2px solid #222222;
+    background: #FFFFFF;
+}
+
+.add-favourite .icon-like {
+    background-image: url("../image/like.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
 }

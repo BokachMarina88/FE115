@@ -10,7 +10,7 @@ function Categories () {
   this.render = () => {
     let categoryList = getCategoryStorage()
 
-    let categoriesSection = create('section', [{ label: 'class', value: 'categories' }], `<h1>Categories Page</h1>`)
+    let categoriesSection = create('section', [{ label: 'class', value: 'categories' }])
     let container = create('div', [{ label: 'class', value: 'container' }])
     let categoryDiv = create('div', [{ label: 'class', value: 'categories-list' }])
 

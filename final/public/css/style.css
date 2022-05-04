@@ -73,9 +73,14 @@ h2 {
     max-width: 1170px;
 }
 
-.header, .catalog, .categories, .contacts {
+.header, .catalog, .categories, .contacts, .product {
     margin-bottom: 50px;
 }
+
+.product {
+    margin-bottom: 30px;
+}
+
 
 .header-area-top {
     padding: 30px 0;
@@ -660,7 +665,7 @@ span.icon-star {
     color: #222222;
     background: #FFFFFF;
     padding: 10px 0;
-    width: 190px;
+    min-width: 190px;
     height: 40px;
     text-transform: uppercase;
 }
@@ -683,4 +688,35 @@ span.icon-star {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 32px 32px;
+}
+
+.nav-pills .button:not(:last-child){
+    margin-right: 20px;
+}
+
+.nav-pills .button{
+    display: flex;
+    justify-content: center;
+}
+
+.nav-pills-tab {
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+.tab-content {
+    color : #222222;
+    background-color: #F3F3F3;
+    padding : 40px 20px 20px;
+    font-weight: normal;
+}
+
+.nav-pills-tab:hover a {
+    text-decoration: none;
+    color : #222222;
+    border: 2px solid #FF4F55;
+}
+
+.nav-pills-tab.active a {
+    background-color: #F3F3F3;
 }

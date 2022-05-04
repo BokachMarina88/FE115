@@ -58,6 +58,12 @@ function Main () {
       import(`./Catalog.js`).then(module => {
         this.element.append(module.default.init())
       })
+      import(`./forms/AuthorForm.js`).then(module => {
+        this.element.append(module.default.init())
+      })
+      import(`./forms/ContactsForm.js`).then(module => {
+        this.element.append(module.default.init())
+      })
       document.title = home.title
     } else if (hash === 'Product') {
       let localHash = window.location.hash.slice(1)

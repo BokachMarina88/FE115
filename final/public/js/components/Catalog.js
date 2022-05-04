@@ -12,7 +12,7 @@ function Catalog () {
     let itemsLimit = 11
     let catalogList = getStorage()
 
-    let catalogSection = create('section', [{ label: 'class', value: 'catalog' }], `<h1>Catalog Page</h1>`)
+    let catalogSection = create('section', [{ label: 'class', value: 'catalog' }])
     let container = create('div', [{ label: 'class', value: 'container' }])
     let catalogSectionHeader = create('h2', [{ label: 'class', value: 'catalog-header' }], 'Featured')
     let catalogFeatures = create('div', [{ label: 'class', value: 'feature-product' }])

@@ -9,7 +9,7 @@ function Cart() {
  }
  this.render = () => {
 
-  let page = create('div', [{label: 'class', value: 'cart_page'}], `<h1,Cart Page</h1>`);
+  let page = create('div', [{label: 'class', value: 'cart_page'}], `<h1>Cart Page</h1>`);
 
   return page;
  }

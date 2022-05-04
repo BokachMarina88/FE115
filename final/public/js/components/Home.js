@@ -4,7 +4,7 @@ function Home () {
   this.title = 'Home'
 
   this.init = () => {
-    return create('div', [{ label: 'class', value: 'home_page' }], `<h1>Home Page</h1>`)
+    return create('div', [{ label: 'class', value: 'home_page' }])
   }
 }
 

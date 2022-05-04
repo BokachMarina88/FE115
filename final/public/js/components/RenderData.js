@@ -28,3 +28,11 @@ export function clearTags(className, element) {
   document.querySelector('.' + element).classList.add(className.slice(1));
  }
 }
+
+export function addClasses(className, ...elements) {
+ elements.forEach(element => element.classList.add(className));
+}
+
+export function removeClasses(className, ...elements) {
+ elements.forEach(element => element.classList.remove(className));
+}

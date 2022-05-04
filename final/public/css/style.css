@@ -675,6 +675,22 @@ span.icon-star {
     border: 2px solid #FF4F55;
 }
 
+.product-cart-area .button.remove-cart-button{
+    background: #ff0000;
+}
+
+.product-cart-area .button.remove-cart-button:hover{
+    background: #FFFFFF;
+}
+
+.show-button{
+    display: inline;
+}
+
+.hide-button{
+    display: none;
+}
+
 .add-favourite .ico {
     display: inline-block;
     width: 190px;

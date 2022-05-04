@@ -6,6 +6,15 @@ export function removeCookie(id) {
  getCookies().filter(item => (item.key === id) ? document.cookie = `cart_points[${id}]=;expires=Thu, 01 Jan 1970 00:00:00 GMT` : null);
 }
 
+export function updateValueCookie(val, id) {
+ getCookies().forEach(elem => {
+  if (elem.key === id) {
+   removeCookie(id);
+   document.cookie = `cart_points[${id}]=${val}`;
+  }
+ });
+}
+
 export function getCookies() {
  let matches = [];
 

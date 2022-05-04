@@ -23,7 +23,7 @@ export function clearTags(className, element) {
   elem.forEach(item => item.classList.remove(className.slice(1)));
  }
 
- let menuArr = ['product'];
+ let menuArr = ['product', 'cart'];
  if (!menuArr.includes(element)) {
   document.querySelector('.' + element).classList.add(className.slice(1));
  }

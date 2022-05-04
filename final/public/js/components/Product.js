@@ -1,6 +1,7 @@
-import { create, render } from './RenderData'
+import { create, render, removeClasses, addClasses } from './RenderData'
 import { getStorage } from './Storage'
-import CartForm from './forms/CartForm'
+import { getCookie, setCookie, removeCookie } from './Cookies'
+import { cartCount } from './Cart'
 
 function Product () {
   this.title = 'Product'
@@ -36,6 +37,29 @@ function Product () {
     let productPriceSpan = create('span', [], `$ ${product[0].price}`)
     let productText = create('div', [{ label: 'class', value: 'product-text' }], `${product[0].description}`)
 
+    let productCart = create('div', [{ label: 'class', value: 'product-cart-area' }])
+    let productForm = create('form', [{ label: 'action', value: '#' }, { label: 'method', value: 'POST' }])
+    let cartDiv = create('div', [{ label: 'class', value: 'form-field' }])
+    let cartLabel = create('label', [{ label: 'class', value: 'input__quantity' }, { label: 'for', value: 'quantity' }])
+    let cartDesc = create('p', [{ label: 'class', value: 'label' }], 'Quantity')
+    let cartInput = create('input', [
+      { label: 'type', value: 'number' }, { label: 'value', value: '1' },
+      { label: 'step', value: '1' }, { label: 'min', value: '0' },
+      { label: 'max', value: '100' }, { label: 'id', value: 'quantity' }, { label: 'class', value: 'form-control' }
+    ])
+
+    let cartsAddBtn = create('div', [{ label: 'class', value: 'form-field' }])
+    let cartAdd = create('button', [{ label: 'class', value: 'button add-cart-button show-button' }], 'Add to cart')
+
+    let cartsRemoveBtn = create('div', [{ label: 'class', value: 'form-field' }])
+    let cartRemove = create('button', [{
+      label: 'class',
+      value: 'button remove-cart-button hide-button'
+    }], 'Remove from cart')
+
+    let cartsFavBtn = create('div', [{ label: 'class', value: 'add-favourite' }])
+    let cartFav = create('a', [{ label: 'class', value: 'ico button icon-like' }])
+
     let descriptionSection = create('div', [])
     let descriptionList = create('ul', [{ label: 'class', value: 'nav nav-pills' }])
     let descriptionItem1 = create('li', [{ label: 'class', value: 'nav-pills-tab active' }])
@@ -67,9 +91,19 @@ function Product () {
     render(productPrice, productPriceSpan)
     render(productDescDiv, productText)
 
-    import(`./forms/CartForm`).then(module => {
-      productDescDiv.append(module.default.init())
-    })
+    render(productDescDiv, productCart)
+    render(productCart, productForm)
+    render(productForm, cartDiv)
+    render(cartDiv, cartLabel)
+    render(cartLabel, cartDesc)
+    render(cartLabel, cartInput)
+
+    render(cartDiv, cartsAddBtn)
+    render(cartsAddBtn, cartAdd)
+    render(cartDiv, cartsRemoveBtn)
+    render(cartsRemoveBtn, cartRemove)
+    render(cartDiv, cartsFavBtn)
+    render(cartsFavBtn, cartFav)
 
     render(container, descriptionSection)
     render(descriptionSection, descriptionList)
@@ -87,6 +121,33 @@ function Product () {
     render(descriptionTab2, descriptionTab2Text)
     render(descriptionTabs, descriptionTab3)
     render(descriptionTab3, descriptionTab3Text)
+
+    if (getCookie(+product[0].id).length) {
+      addClasses('hide-button', cartAdd)
+      removeClasses('hide-button', cartRemove)
+      addClasses('show-button', cartRemove)
+    } else {
+      addClasses('show-button', cartAdd)
+    }
+
+    cartsAddBtn.addEventListener('click', event => {
+      event.preventDefault()
+      setCookie(document.querySelector('#quantity').value, +product[0].id)
+      if (getCookie(+product[0].id).length) {
+        if (cartAdd.classList.contains('show-button')) {
+          removeClasses('show-button', cartAdd)
+          addClasses('hide-button', cartAdd)
+          removeClasses('hide-button', cartRemove)
+          addClasses('show-button', cartRemove)
+        }
+        cartCount()
+      }
+    })
+
+    cartsRemoveBtn.addEventListener('click', _ => {
+      removeCookie(+product[0].id)
+      cartCount()
+    })
 
     return productSection
   }

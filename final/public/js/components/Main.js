@@ -3,6 +3,7 @@ import { getData } from './ProductAPI'
 import { getStorage } from './Storage'
 import home from './Home'
 import product from './Product'
+import {cartCount} from './Cart'
 
 function Main () {
   this.init = () => {
@@ -12,6 +13,7 @@ function Main () {
     })
 
     window.addEventListener('load', async _ => {
+      cartCount();
       const a = document.querySelectorAll('a.nav-link')
       a.forEach(a => {
         a.addEventListener('click', async _ => {

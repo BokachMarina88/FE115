@@ -27,8 +27,8 @@ function Cart () {
 
     let getCook = getCookies()
     if (getCook.length) {
-      let cartTableDiv = create('div', [])
-      let cartTable = create('table', [{ label: 'class', value: 'table cart-items' }])
+      let cartTableDiv = create('div', [{label: 'class', value: 'table-responsive-md'}])
+      let cartTable = create('table', [{ label: 'class', value: 'table table-bordered cart-items' }])
       let cartTableColumn = create('tr', [])
       let cartTableColumnHeader1 = create('th', [], 'Remove')
       let cartTableColumnHeader2 = create('th', [], 'Images')
@@ -118,6 +118,8 @@ function Cart () {
           removeCookie(+elem.id)
           if (getCookies().length) {
             event.target.closest('tr').remove()
+            let newCartTotalPrice = this.cartTotalAmount()
+            document.querySelector('.subtotal > p span').textContent = `$ ${newCartTotalPrice.toString()}`
           } else {
             document.querySelector('.cart-items').remove()
             document.querySelector('.shopping-cart-main').remove()
@@ -125,7 +127,6 @@ function Cart () {
             this.emptyMessage(cartSectionHeaderDiv)
           }
           cartCount()
-          this.cartTotalAmount()
         })
 
         cartBodyColumn5.addEventListener('change', event => {
@@ -181,7 +182,7 @@ function Cart () {
 
       let cartDivRow = create('div', [{ label: 'class', value: 'shopping-cart-final' }])
       let row = create('div', [{ label: 'class', value: 'row' }])
-      let item = create('div', [{ label: 'class', value: 'col-md-8' }])
+      let item = create('div', [{ label: 'class', value: 'col-md-8 col-sm-12 col-xs-12' }])
 
       let cartLabel = create('label', [{ label: 'class', value: 'textarea w-100' }, {
         label: 'for',
@@ -195,7 +196,7 @@ function Cart () {
 
       let totalCartPrice = this.cartTotalAmount()
 
-      let item1 = create('div', [{ label: 'class', value: 'col-md-4' }])
+      let item1 = create('div', [{ label: 'class', value: 'col-md-4 col-sm-12 col-xs-12' }])
       let rowTotal = create('div', [{ label: 'class', value: 'totals' }])
       let rowSubTotal = create('div', [{ label: 'class', value: 'subtotal' }])
       let rowSubTotalText = create('p', [], 'Subtotals')
@@ -224,6 +225,8 @@ function Cart () {
       render(divCartCheckout, checkout)
       render(checkout, checkoutLink)
       render(rowTotal, checkoutDesc)
+    } else {
+      this.emptyMessage(cartSectionHeaderDiv)
     }
     return cartSection
   }

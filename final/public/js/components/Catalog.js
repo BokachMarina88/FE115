@@ -1,5 +1,7 @@
-import { create, render } from './RenderData'
+import { addClasses, create, removeClasses, render } from './RenderData'
 import { getStorage } from './Storage'
+import { getCookie, getCookies, setCookie } from './Cookies'
+import { cartCount } from './Cart'
 
 function Catalog () {
   this.title = 'Catalog'
@@ -31,22 +33,32 @@ function Catalog () {
         items = catalogList.filter(item => item.id <= itemsLimit ? item : null)
       }
 
+      let arrCart = []
+      getCookies().forEach(item => arrCart.push(+item.key))
+
       items.map(elem => {
         let catalogItem = create('div', [{
           label: 'class',
           value: 'col-lg-4 col-md-6 col-sm-6 col-xs-12 d-flex justify-content-center'
         }])
         let singleItem = create('div', [{ label: 'class', value: 'single-product' }])
-        let singleItemLink = create('a', [{ label: 'href', value: `/#product/${elem.id}` }])
+        let singleItemLink = create('a', [{ label: 'href', value: `/#product/${elem.id}` }, {
+          label: 'class',
+          value: 'image-link'
+        }])
+        let className = arrCart.includes(elem.id) ? 'in-cart' : ''
         let singleItemImg = create('img', [{ label: 'src', value: `${elem.image}` }, {
           label: 'alt',
           value: `${elem.title}`
-        }])
+        }, { label: 'class', value: className }])
 
-        let itemDetails = create('div', [{ label: 'class', value: 'product_details' }])
+        let itemDetails = create('div', [{ label: 'class', value: 'product-details' }])
         let itemDetailsHeader = create('h2')
         let itemDetailsHeaderLink = create('a', [{ label: 'href', value: `/#product/${elem.id}` }], `${elem.title}`)
         let itemDetailsDescription = create('p', [{ label: 'class', value: 'popular-price' }], `$ ${elem.price}`)
+
+        let classAdd = !arrCart.includes(elem.id) ? 'cart-details' : 'cart-details-clicked'
+        let cartAdd = create('a', [{ label: 'class', value: `button add-cart-button ${classAdd}` }], 'Add to cart')
 
         render(catalogRow, catalogItem)
         render(catalogItem, singleItem)
@@ -57,7 +69,19 @@ function Catalog () {
         render(itemDetails, itemDetailsHeader)
         render(itemDetailsHeader, itemDetailsHeaderLink)
         render(itemDetails, itemDetailsDescription)
+        render(itemDetails, cartAdd)
 
+        cartAdd.addEventListener('click', _ => {
+          setCookie('1', +elem.id)
+          if (getCookie(+elem.id).length) {
+            if (cartAdd.classList.contains('cart-details')) {
+              addClasses('in-cart', singleItemImg)
+              removeClasses('cart-details', cartAdd)
+              addClasses('cart-details-clicked', cartAdd)
+            }
+            cartCount()
+          }
+        })
       })
 
       if (!location.hash) {

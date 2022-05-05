@@ -265,6 +265,16 @@ a.slider-readmore {
     align-items: center;
 }
 
+.single-image .shop-collection {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.single-image:hover .shop-collection {
+    opacity: 1;
+    visibility: visible;
+}
+
 .shop-collection a {
     font-size: 15px;
     color: #fff;

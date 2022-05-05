@@ -31,6 +31,27 @@ function Catalog () {
       let items = catalogList
       if (!location.hash) {
         items = catalogList.filter(item => item.id <= itemsLimit ? item : null)
+      } else {
+        let value = location.hash.split('/')
+        let categoryName = ''
+        switch (value[1]) {
+          case 'men':
+            categoryName = 'men\'s clothing'
+            break
+          case 'women':
+            categoryName = 'women\'s clothing'
+            break
+          default:
+            categoryName = value[1]
+            break
+        }
+
+        if (categoryName) {
+          items = catalogList.filter(item => item.category === categoryName ? item : null)
+          if (!items.length) {
+            items = catalogList
+          }
+        }
       }
 
       let arrCart = []

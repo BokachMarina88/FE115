@@ -4,9 +4,17 @@
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1130px) {
     .container {
         /*background: grey;*/
+    }
+
+    .shopping-button:nth-last-of-type(3) {
+        margin-right: 0;
+    }
+
+    .shopping-cart-main {
+        justify-content: flex-start;
     }
 }
 
@@ -121,6 +129,10 @@
     .product-cart-area {
         width: 100%;
         min-width: 290px;
+    }
+
+    .shopping-cart-main {
+        padding: 10px 20px;
     }
 }
 

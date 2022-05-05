@@ -32,6 +32,10 @@ input, textarea {
     color: #222;
 }
 
+.textarea textarea {
+    height: 120px;
+}
+
 input::-webkit-input-placeholder {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 18px;
@@ -754,14 +758,14 @@ table.cart-items {
     text-align: center;
 }
 
-.table tbody tr td, .table tbody tr th {
+.table tr td, .table th {
     padding: 8px;
     vertical-align: top;
     border: 1px solid #ddd;
 }
 
 table.cart-items tr td input {
-    background: #f0f0f0 none repeat scroll 0 0;
+    background: #f0f0f0;
     border: 0 solid #f0f0f0;
     border-radius: 0;
     height: 40px;
@@ -774,7 +778,7 @@ tbody a .cart-img {
 }
 
 .shopping-cart-main {
-    padding: 30px 20px;
+    padding: 20px;
     border-left: 1px solid #E5E5E5;
     border-bottom: 1px solid #E5E5E5;
     border-right: 1px solid #E5E5E5;
@@ -782,6 +786,7 @@ tbody a .cart-img {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .shopping-button:nth-last-of-type(3) {
@@ -791,6 +796,8 @@ tbody a .cart-img {
 .shopping-button {
     display: inline-block;
     margin-left: 10px;
+    margin-bottom: 30px;
+    min-width: 200px;
 }
 
 .shopping-button .continue-shopping, .cart-checkout input.btn {
@@ -804,6 +811,16 @@ tbody a .cart-img {
     transition: all .3s linear;
     border-radius: 0;
     font-size: 13px;
+}
+
+.cart-checkout {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.cart-checkout .shopping-button {
+    margin-bottom: 0;
 }
 
 a.continue-shopping:hover {
@@ -823,4 +840,24 @@ a.continue-shopping:hover {
     width: 100%;
     padding: 30px 20px 40px 15px;
     display: block;
+}
+
+.subtotal > p {
+    font-size: 20px;
+    color: #666;
+}
+
+.subtotal > p span {
+    float: right;
+}
+
+
+.subtotal {
+    margin-bottom: 20px;
+}
+
+.totals > p {
+    color: #666;
+    margin-top: 10px;
+    text-align: right;
 }

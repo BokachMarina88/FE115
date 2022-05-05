@@ -27,10 +27,8 @@ function Cart () {
 
     let getCook = getCookies()
     if (getCook.length) {
-
       let cartTableDiv = create('div', [])
       let cartTable = create('table', [{ label: 'class', value: 'table cart-items' }])
-      let cartTableHeader = create('tbody', [])
       let cartTableColumn = create('tr', [])
       let cartTableColumnHeader1 = create('th', [], 'Remove')
       let cartTableColumnHeader2 = create('th', [], 'Images')
@@ -41,8 +39,7 @@ function Cart () {
 
       render(cartItems, cartTableDiv)
       render(cartTableDiv, cartTable)
-      render(cartTable, cartTableHeader)
-      render(cartTableHeader, cartTableColumn)
+      render(cartTable, cartTableColumn)
       render(cartTableColumn, cartTableColumnHeader1)
       render(cartTableColumn, cartTableColumnHeader2)
       render(cartTableColumn, cartTableColumnHeader3)
@@ -53,9 +50,10 @@ function Cart () {
       let arrCart = []
       getCook.forEach(item => arrCart.push(item.key))
       let dataList = getStorage().filter(item => (arrCart.includes(item.id)) ? item : null)
+      let cartTableBody = create('tbody', [])
+      render(cartTable, cartTableBody)
 
       dataList.map(elem => {
-        let cartTableBody = create('tbody', [])
         let cartTableColumnBody = create('tr', [])
         let cartTableColumnBody1 = create('td', [])
         let cartBodyColumnLink = create('a', [{ label: 'class', value: 'trash' }])
@@ -100,7 +98,6 @@ function Cart () {
         let cartTableColumnBody6 = create('td', [])
         let cartBodyColumn6 = create('p', [{ label: 'class', value: 'total' }], `$ ${total}`)
 
-        render(cartTable, cartTableBody)
         render(cartTableBody, cartTableColumnBody)
         render(cartTableColumnBody, cartTableColumnBody1)
         render(cartTableColumnBody1, cartBodyColumnLink)
@@ -119,15 +116,25 @@ function Cart () {
 
         cartBodyColumnLink.addEventListener('click', event => {
           removeCookie(+elem.id)
-          event.target.closest('tr').remove()
+          if (getCookies().length) {
+            event.target.closest('tr').remove()
+          } else {
+            document.querySelector('.cart-items').remove()
+            document.querySelector('.shopping-cart-main').remove()
+            document.querySelector('.shopping-cart-final').remove()
+            this.emptyMessage(cartSectionHeaderDiv)
+          }
           cartCount()
+          this.cartTotalAmount()
         })
 
-        cartBodyColumn5.addEventListener('change', _ => {
-          updateValueCookie(document.querySelector('#quantity').value, +elem.id)
+        cartBodyColumn5.addEventListener('change', event => {
+          updateValueCookie(event.target.value, +elem.id)
           cartCount()
-          let newTotalPrice = this.cartAmount(elem, document.querySelector('#quantity').value)
-          document.querySelector('.total').textContent = `$ ${newTotalPrice.toString()}`
+          let newPrice = this.cartAmount(elem, event.target.value)
+          event.target.parentElement.nextSibling.textContent = `$ ${newPrice.toString()}`
+          let newCartTotalPrice = this.cartTotalAmount()
+          document.querySelector('.subtotal > p span').textContent = `$ ${newCartTotalPrice.toString()}`
         })
       })
 
@@ -146,13 +153,13 @@ function Cart () {
         value: '/#cart'
       }], 'Clear Shopping Cart')
 
-      cartBtnMainDiv2.addEventListener('click', event => {
+      cartBtnMainDiv2.addEventListener('click', _ => {
         clearCookie()
         document.querySelector('.cart-items').remove()
         document.querySelector('.shopping-cart-main').remove()
         document.querySelector('.shopping-cart-final').remove()
         cartCount()
-
+        this.cartTotalAmount()
         this.emptyMessage(cartSectionHeaderDiv)
       })
 
@@ -186,9 +193,14 @@ function Cart () {
         value: 'CartSpecialInstructions'
       }])
 
+      let totalCartPrice = this.cartTotalAmount()
+
       let item1 = create('div', [{ label: 'class', value: 'col-md-4' }])
       let rowTotal = create('div', [{ label: 'class', value: 'totals' }])
-      let rowSubTotal = create('div', [{ label: 'class', value: 'subtotal' }], `Subtotals $ `)
+      let rowSubTotal = create('div', [{ label: 'class', value: 'subtotal' }])
+      let rowSubTotalText = create('p', [], 'Subtotals')
+      let rowSubTotalTextPrice = create('span', [], `$ ${totalCartPrice}`)
+
       let divCartCheckout = create('div', [{ label: 'class', value: 'cart-checkout' }])
       let checkout = create('div', [{ label: 'class', value: 'shopping-button' }])
       let checkoutLink = create('a', [{ label: 'class', value: 'continue-shopping' }, {
@@ -206,15 +218,13 @@ function Cart () {
       render(row, item1)
       render(item1, rowTotal)
       render(rowTotal, rowSubTotal)
+      render(rowSubTotal, rowSubTotalText)
+      render(rowSubTotalText, rowSubTotalTextPrice)
       render(rowTotal, divCartCheckout)
       render(divCartCheckout, checkout)
       render(checkout, checkoutLink)
       render(rowTotal, checkoutDesc)
-
-    } else {
-      this.emptyMessage(cartSectionHeaderDiv)
     }
-
     return cartSection
   }
 
@@ -230,6 +240,19 @@ function Cart () {
 
   this.cartAmount = (el, qty) => {
     return el.price * qty
+  }
+
+  this.cartTotalAmount = () => {
+    let totalPrice = 0
+
+    getCookies().forEach(item => {
+      let it = getStorage().filter(el => (el.id === item.key) ? el : null)
+      if (it) {
+        totalPrice += it[0].price * item.value
+      }
+    })
+
+    return totalPrice.toFixed(2)
   }
 
   this.emptyMessage = (elem) => {

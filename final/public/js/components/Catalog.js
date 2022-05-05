@@ -64,7 +64,7 @@ function Catalog () {
         let learnMoreRow = create('div', [{ label: 'class', value: 'row justify-content-center' }])
         let learnMoreItem = create('div', [{ label: 'class', value: 'col-lg-3 col-md-3 col-sm-6 col-xs-12' }])
         let learnMoreDiv = create('div', [{ label: 'class', value: 'more-feature-area' }])
-        let learnMoreLink = create('a', [{ label: 'href', value: '/#catalog' }], 'Lear more...')
+        let learnMoreLink = create('a', [{ label: 'href', value: '/#catalog' }], 'Load more...')
 
         render(container, learnMoreRow)
         render(learnMoreRow, learnMoreItem)

@@ -1,5 +1,5 @@
 import { create, render } from './RenderData'
-import { getCookies, removeCookie, updateValueCookie } from './Cookies'
+import { clearCookie, getCookies, removeCookie, updateValueCookie } from './Cookies'
 import { getStorage } from './Storage'
 
 function Cart () {
@@ -10,13 +10,13 @@ function Cart () {
   }
 
   this.render = () => {
-    let cartSection = create('section', [{ label: 'class', value: 'cart' }], `<h1>Cart Page</h1>`)
+    let cartSection = create('section', [{ label: 'class', value: 'cart' }])
     let container = create('div', [{ label: 'class', value: 'container' }])
     let cartForm = create('form', [{ label: 'action', value: '#' }, { label: 'method', value: 'POST' }])
     let cartRow = create('div', [{ label: 'class', value: 'row' }])
     let cartItems = create('div', [{ label: 'class', value: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' }])
     let cartSectionHeaderDiv = create('div', [{ label: 'class', value: 'cart-title' }])
-    let cartSectionHeader = create('h2', [{ label: 'class', value: 'cart-title' }], 'Shopping cart')
+    let cartSectionHeader = create('h3', [{ label: 'class', value: 'cart-title' }], 'Shopping cart')
 
     render(cartSection, container)
     render(container, cartForm)
@@ -119,7 +119,7 @@ function Cart () {
 
         cartBodyColumnLink.addEventListener('click', event => {
           removeCookie(+elem.id)
-          event.target.closest('tr').remove();
+          event.target.closest('tr').remove()
           cartCount()
         })
 
@@ -130,16 +130,89 @@ function Cart () {
           document.querySelector('.total').textContent = `$ ${newTotalPrice.toString()}`
         })
       })
-    }
-    else {
-      let cartSectionEmpty = create('p', [])
-      cartSectionEmpty.innerHTML = 'Your cart is currently empty'
-      let cartSectionLink = create('a', [{ label: 'href', value: '/#catalog' }], 'here' )
-      let cartSectionSpan = create('span', [], 'Countinue browsing ' )
 
-      render(cartSectionHeaderDiv, cartSectionEmpty)
-      render(cartSectionHeaderDiv, cartSectionSpan)
-      render(cartSectionSpan, cartSectionLink)
+      let cartBtnRow = create('div', [{ label: 'class', value: 'row' }])
+      let cartBtns = create('div', [{ label: 'class', value: 'col-lg-12 col-md-12 col-sm-12 col-xs-12' }])
+      let cartBtnsMain = create('div', [{ label: 'class', value: 'shopping-cart-main' }])
+      let cartBtnMainDiv1 = create('div', [{ label: 'class', value: 'shopping-button' }])
+      let cartBtnMainLink1 = create('a', [{ label: 'class', value: 'continue-shopping' }, {
+        label: 'href',
+        value: '/#catalog'
+      }], 'Continue Shopping')
+
+      let cartBtnMainDiv2 = create('div', [{ label: 'class', value: 'shopping-button' }])
+      let cartBtnMainLink2 = create('a', [{ label: 'class', value: 'continue-shopping clear' }, {
+        label: 'href',
+        value: '/#cart'
+      }], 'Clear Shopping Cart')
+
+      cartBtnMainDiv2.addEventListener('click', event => {
+        clearCookie()
+        document.querySelector('.cart-items').remove()
+        document.querySelector('.shopping-cart-main').remove()
+        document.querySelector('.shopping-cart-final').remove()
+        cartCount()
+
+        this.emptyMessage(cartSectionHeaderDiv)
+      })
+
+      let cartBtnMainDiv3 = create('div', [{ label: 'class', value: 'shopping-button' }])
+      let cartBtnMainLink3 = create('a', [{ label: 'class', value: 'continue-shopping' }, {
+        label: 'href',
+        value: '/#cart'
+      }], 'Update shopping Cart')
+
+      render(cartForm, cartBtnRow)
+      render(cartBtnRow, cartBtns)
+      render(cartBtns, cartBtnsMain)
+      render(cartBtnsMain, cartBtnMainDiv1)
+      render(cartBtnMainDiv1, cartBtnMainLink1)
+      render(cartBtnsMain, cartBtnMainDiv2)
+      render(cartBtnMainDiv2, cartBtnMainLink2)
+      render(cartBtnsMain, cartBtnMainDiv3)
+      render(cartBtnMainDiv3, cartBtnMainLink3)
+
+      let cartDivRow = create('div', [{ label: 'class', value: 'shopping-cart-final' }])
+      let row = create('div', [{ label: 'class', value: 'row' }])
+      let item = create('div', [{ label: 'class', value: 'col-md-8' }])
+
+      let cartLabel = create('label', [{ label: 'class', value: 'textarea w-100' }, {
+        label: 'for',
+        value: 'CartSpecialInstructions'
+      }])
+      let cartDesc = create('h3', [{ label: 'class', value: 'label' }], 'Special instructions for seller')
+      let cartInput = create('textarea', [{ label: 'class', value: 'form-control w-100' }, {
+        label: 'id',
+        value: 'CartSpecialInstructions'
+      }])
+
+      let item1 = create('div', [{ label: 'class', value: 'col-md-4' }])
+      let rowTotal = create('div', [{ label: 'class', value: 'totals' }])
+      let rowSubTotal = create('div', [{ label: 'class', value: 'subtotal' }], `Subtotals $ `)
+      let divCartCheckout = create('div', [{ label: 'class', value: 'cart-checkout' }])
+      let checkout = create('div', [{ label: 'class', value: 'shopping-button' }])
+      let checkoutLink = create('a', [{ label: 'class', value: 'continue-shopping' }, {
+        label: 'href',
+        value: '/#cart'
+      }], 'Proceed to Checkout')
+      let checkoutDesc = create('p', [], 'Shipping &amp; taxes calculated at checkout')
+
+      render(cartForm, cartDivRow)
+      render(cartDivRow, row)
+      render(row, item)
+      render(item, cartLabel)
+      render(cartLabel, cartDesc)
+      render(cartLabel, cartInput)
+      render(row, item1)
+      render(item1, rowTotal)
+      render(rowTotal, rowSubTotal)
+      render(rowTotal, divCartCheckout)
+      render(divCartCheckout, checkout)
+      render(checkout, checkoutLink)
+      render(rowTotal, checkoutDesc)
+
+    } else {
+      this.emptyMessage(cartSectionHeaderDiv)
     }
 
     return cartSection
@@ -157,6 +230,17 @@ function Cart () {
 
   this.cartAmount = (el, qty) => {
     return el.price * qty
+  }
+
+  this.emptyMessage = (elem) => {
+    let cartSectionEmpty = create('p', [])
+    cartSectionEmpty.innerHTML = 'Your cart is currently empty'
+    let cartSectionLink = create('a', [{ label: 'href', value: '/#catalog' }], 'here')
+    let cartSectionSpan = create('span', [], 'Countinue browsing ')
+
+    render(elem, cartSectionEmpty)
+    render(elem, cartSectionSpan)
+    render(cartSectionSpan, cartSectionLink)
   }
 }
 

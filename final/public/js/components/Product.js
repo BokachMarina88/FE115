@@ -10,14 +10,20 @@ function Product () {
     let limitRate = 5
     let product = getStorage().filter(elem => elem.id === +id ? elem : null)
 
-    let productSection = create('section', [{ label: 'class', value: 'product' }], `<h1>Product Pagetest</h1>`)
+    let productSection = create('section', [{ label: 'class', value: 'product' }])
     let container = create('div', [{ label: 'class', value: 'container' }])
-    let catalogRow = create('div', [{ label: 'class', value: 'row justify-content-around mb-5' }])
-    let productImageDiv = create('div', [{ label: 'class', value: 'col-lg-5 col-md-12 col-sm-12 col-xs-12' }])
+    let catalogRow = create('div', [{ label: 'class', value: 'row mb-5 justify-content-around' }])
+    let productImageDiv = create('div', [{
+      label: 'class',
+      value: 'col-lg-5 col-md-12 col-sm-12 col-xs-12 product-info'
+    }])
     let productImage = create('img', [{ label: 'src', value: `${product[0].image}` },
       { label: 'alt', value: `${product[0].title}` }, { label: 'class', value: 'product-img' }])
     let productDescDiv = create('div', [{ label: 'class', value: 'col-lg-5 col-md-12 col-sm-12 col-xs-12' }])
-    let productDescHeader = create('h2', [{ label: 'class', value: 'product-heading' }], `${product[0].title}`)
+    let productDescHeader = create('h2', [{
+      label: 'class',
+      value: 'product-heading product-info'
+    }], `${product[0].title}`)
     let productDescRatingDiv = create('div', [{ label: 'class', value: 'product-rating' }])
 
     let productRateInt = Math.round(product[0].rating.rate)
@@ -33,7 +39,7 @@ function Product () {
       productDescRatingDiv.appendChild(create('span', [{ label: 'class', value: 'product-rate-caption' }], 'No review'))
     }
 
-    let productPrice = create('div', [{ label: 'class', value: 'pricing-rate' }])
+    let productPrice = create('div', [{ label: 'class', value: 'pricing-rate product-info' }])
     let productPriceSpan = create('span', [], `$ ${product[0].price}`)
     let productText = create('div', [{ label: 'class', value: 'product-text' }], `${product[0].description}`)
 
@@ -58,7 +64,10 @@ function Product () {
     }], 'Remove from cart')
 
     let cartsFavBtn = create('div', [{ label: 'class', value: 'add-favourite' }])
-    let cartFav = create('a', [{ label: 'class', value: 'ico button icon-like' }])
+    let cartFav = create('a', [{ label: 'class', value: 'ico button icon-like' }, {
+      label: 'href',
+      value: `/#product/${product[0].id}`
+    }])
 
     let descriptionSection = create('div', [])
     let descriptionList = create('ul', [{ label: 'class', value: 'nav nav-pills' }])
@@ -144,8 +153,15 @@ function Product () {
       }
     })
 
-    cartsRemoveBtn.addEventListener('click', _ => {
+    cartsRemoveBtn.addEventListener('click', event => {
+      event.preventDefault()
       removeCookie(+product[0].id)
+      if (cartRemove.classList.contains('show-button')) {
+        removeClasses('show-button', cartRemove)
+        addClasses('hide-button', cartRemove)
+        removeClasses('hide-button', cartAdd)
+        addClasses('show-button', cartAdd)
+      }
       cartCount()
     })
 

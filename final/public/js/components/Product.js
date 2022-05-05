@@ -69,7 +69,7 @@ function Product () {
       value: `/#product/${product[0].id}`
     }])
 
-    let descriptionSection = create('div', [])
+    let descriptionSection = create('div', [{ label: 'class', value: 'product-description' }])
     let descriptionList = create('ul', [{ label: 'class', value: 'nav nav-pills' }])
     let descriptionItem1 = create('li', [{ label: 'class', value: 'nav-pills-tab active' }])
     let descriptionLink1 = create('a', [{ label: 'class', value: 'button' }, { label: 'href', value: '#1b' },
@@ -130,6 +130,11 @@ function Product () {
     render(descriptionTab2, descriptionTab2Text)
     render(descriptionTabs, descriptionTab3)
     render(descriptionTab3, descriptionTab3Text)
+
+    import(`./RelatedProducts.js`).then(module => {
+      container.append(module.default.init())
+    })
+
 
     if (getCookie(+product[0].id).length) {
       addClasses('hide-button', cartAdd)

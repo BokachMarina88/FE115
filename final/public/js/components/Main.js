@@ -3,7 +3,7 @@ import { getData } from './ProductAPI'
 import { getStorage } from './Storage'
 import home from './Home'
 import product from './Product'
-import {cartCount} from './Cart'
+import { cartCount } from './Cart'
 
 function Main () {
   this.init = () => {
@@ -13,7 +13,7 @@ function Main () {
     })
 
     window.addEventListener('load', async _ => {
-      cartCount();
+      cartCount()
       const a = document.querySelectorAll('a.nav-link')
       a.forEach(a => {
         a.addEventListener('click', async _ => {
@@ -51,19 +51,19 @@ function Main () {
 
     if (hash === 'Home') {
       this.element.innerHTML = ''
-      import(`./Slider.js`).then(module => {
+      await import(`./Slider.js`).then(module => {
         this.element.append(module.default.init())
       })
-      import(`./Categories.js`).then(module => {
+      await import(`./Categories.js`).then(module => {
         this.element.append(module.default.init())
       })
-      import(`./Catalog.js`).then(module => {
+      await import(`./Catalog.js`).then(module => {
         this.element.append(module.default.init())
       })
-      import(`./forms/AuthorForm.js`).then(module => {
+      await import(`./AuthorForm.js`).then(module => {
         this.element.append(module.default.init())
       })
-      import(`./forms/ContactsForm.js`).then(module => {
+      await import(`./ContactsForm.js`).then(module => {
         this.element.append(module.default.init())
       })
       document.title = home.title

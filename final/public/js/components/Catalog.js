@@ -4,8 +4,6 @@ import { getCookie, getCookies, setCookie } from './Cookies'
 import { cartCount } from './Cart'
 
 function Catalog () {
-  this.title = 'Catalog'
-
   this.init = () => {
     return this.render()
   }
@@ -130,7 +128,5 @@ function Catalog () {
 }
 
 let catalog = new Catalog()
-let title = catalog.title
 
 export default catalog
-export { title }

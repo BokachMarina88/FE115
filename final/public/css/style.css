@@ -921,3 +921,20 @@ a.continue-shopping:hover {
 .category-area li a {
     text-transform: uppercase;
 }
+
+.product-description {
+    margin-bottom: 30px;
+}
+
+.related-products-header {
+    color: #222222;
+    text-align: center;
+    font-size: 40px;
+    line-height: 44px;
+    margin-bottom: 30px;
+}
+
+img.related-img {
+    width: 150px;
+    height: 150px;
+}

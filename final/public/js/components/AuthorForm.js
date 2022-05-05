@@ -1,4 +1,4 @@
-import { create } from '../RenderData'
+import { create } from './RenderData'
 
 function AuthorForm () {
 

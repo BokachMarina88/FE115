@@ -73,7 +73,7 @@ h2 {
 /*///////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 .container {
-    background: gray;
+    /*background: gray;*/
     margin: 0 auto;
     max-width: 1170px;
     padding: 0 15px;
@@ -331,13 +331,13 @@ img.in-cart {
 }
 
 .cart-details-clicked {
-display: none;
+    display: none;
 }
 
 .cart-details {
     position: absolute;
     top: 30px;
-    left: 50px;
+    left: 30px;
     z-index: 98;
     opacity: 0;
     visibility: hidden;
@@ -362,6 +362,12 @@ display: none;
 
 .women {
     background-image: url(../image/collections/women.png);
+}
+
+.banner-promo {
+    background-image: url(../image/banner.png);
+    width: 260px;
+    height: 340px;
 }
 
 .catalog-header {
@@ -891,4 +897,27 @@ a.continue-shopping:hover {
     color: #666;
     margin-top: 10px;
     text-align: right;
+}
+
+.category-area {
+    background: #F3F3F3;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.category-area h2 {
+    font-size: 18px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #222222;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #C2C2C2;
+}
+
+.category-area li:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.category-area li a {
+    text-transform: uppercase;
 }

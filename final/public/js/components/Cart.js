@@ -145,7 +145,7 @@ function Cart () {
       let cartBtnMainDiv1 = create('div', [{ label: 'class', value: 'shopping-button' }])
       let cartBtnMainLink1 = create('a', [{ label: 'class', value: 'continue-shopping' }, {
         label: 'href',
-        value: '/#catalog'
+        value: '/#clothing'
       }], 'Continue Shopping')
 
       let cartBtnMainDiv2 = create('div', [{ label: 'class', value: 'shopping-button' }])
@@ -261,7 +261,7 @@ function Cart () {
   this.emptyMessage = (elem) => {
     let cartSectionEmpty = create('p', [])
     cartSectionEmpty.innerHTML = 'Your cart is currently empty'
-    let cartSectionLink = create('a', [{ label: 'href', value: '/#catalog' }], 'here')
+    let cartSectionLink = create('a', [{ label: 'href', value: '/#clothing' }], 'here')
     let cartSectionSpan = create('span', [], 'Countinue browsing ')
 
     render(elem, cartSectionEmpty)

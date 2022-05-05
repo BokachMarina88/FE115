@@ -12,11 +12,12 @@ function Catalog () {
 
   this.render = () => {
     let itemsLimit = 11
+    let сatalogName = 'Featured'
     let catalogList = getStorage()
 
     let catalogSection = create('section', [{ label: 'class', value: 'catalog' }])
     let container = create('div', [{ label: 'class', value: 'container' }])
-    let catalogSectionHeader = create('h2', [{ label: 'class', value: 'catalog-header' }], 'Featured')
+    let catalogSectionHeader = create('h2', [{ label: 'class', value: 'catalog-header' }])
     let catalogFeatures = create('div', [{ label: 'class', value: 'feature-product' }])
     let catalogProduct = create('div', [{ label: 'class', value: 'product-list' }])
     let catalogRow = create('div', [{ label: 'class', value: 'row' }])
@@ -34,9 +35,11 @@ function Catalog () {
       } else {
         let value = location.hash.split('/')
         let categoryName = ''
+
         switch (value[1]) {
           case 'men':
             categoryName = 'men\'s clothing'
+
             break
           case 'women':
             categoryName = 'women\'s clothing'
@@ -50,9 +53,13 @@ function Catalog () {
           items = catalogList.filter(item => item.category === categoryName ? item : null)
           if (!items.length) {
             items = catalogList
+          } else {
+            сatalogName = items[0].category
           }
         }
       }
+
+      catalogSectionHeader.innerText = сatalogName
 
       let arrCart = []
       getCookies().forEach(item => arrCart.push(+item.key))
@@ -109,7 +116,7 @@ function Catalog () {
         let learnMoreRow = create('div', [{ label: 'class', value: 'row justify-content-center' }])
         let learnMoreItem = create('div', [{ label: 'class', value: 'col-lg-3 col-md-3 col-sm-6 col-xs-12' }])
         let learnMoreDiv = create('div', [{ label: 'class', value: 'more-feature-area' }])
-        let learnMoreLink = create('a', [{ label: 'href', value: '/#catalog' }], 'Load more...')
+        let learnMoreLink = create('a', [{ label: 'href', value: '/#clothing' }], 'Load more...')
 
         render(container, learnMoreRow)
         render(learnMoreRow, learnMoreItem)

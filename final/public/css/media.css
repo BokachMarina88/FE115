@@ -1,14 +1,7 @@
 @media (max-width: 1152px) {
-    .container {
-        /*background: palegoldenrod;*/
-    }
 }
 
 @media (max-width: 1130px) {
-    .container {
-        /*background: grey;*/
-    }
-
     .shopping-button:nth-last-of-type(3) {
         margin-right: 0;
     }
@@ -19,10 +12,6 @@
 }
 
 @media (max-width: 1100px) {
-    .container {
-        background: blue;
-    }
-
     .cart-checkout {
         padding-right: 15px;
         justify-content: center;
@@ -31,14 +20,15 @@
     .shopping-button {
         margin-left: 0;
     }
+
+    .banner-promo {
+        background-image: none;
+        height: 0;
+    }
 }
 
 
 @media (max-width: 995px) {
-    .container {
-        /*background: grey;*/
-    }
-
     .help-support-flex {
         display: flex;
         justify-content: center;
@@ -73,10 +63,6 @@
 }
 
 @media (max-width: 991px) {
-    .container {
-        background: yellowgreen;
-    }
-
     .product-info {
         text-align: center;
     }
@@ -110,10 +96,6 @@
 }
 
 @media (max-width: 800px) {
-    .container {
-        /*background: yellow;*/
-    }
-
     .slider,
     .quote {
         display: none;
@@ -121,10 +103,6 @@
 }
 
 @media (max-width: 768px) {
-    .container {
-        /*background: red;*/
-    }
-
     .account-card-area {
         text-align: center;
     }
@@ -162,10 +140,6 @@
 }
 
 @media (max-width: 425px) {
-    .container {
-        /*background: deepskyblue;*/
-    }
-
     .visa-img {
         background: none;
         height: 0;
@@ -189,17 +163,10 @@
 }
 
 @media (max-width: 375px) {
-    .container {
-        /*background: none;*/
-    }
-
     .cart-checkout {
         justify-content: flex-start;
     }
 }
 
 @media (max-width: 320px) {
-    .container {
-        /*background: yellowgreen;*/
-    }
 }

@@ -64,7 +64,7 @@ function Cart () {
 
         let cartTableColumnBody2 = create('td', [])
         let cartBodyColumnLink2 = create('a', [{ label: 'href', value: `/#product/${elem.id}` },
-          { label: 'target', value: '_blank' }])
+          { label: 'target', value: '_blank' }, { label: 'class', value: 'image-link' }])
         let cartBodyColumnLinkImg2 = create('img', [{ label: 'src', value: `${elem.image}` },
           { label: 'alt', value: `${elem.title}` }, { label: 'class', value: 'cart-img' }
         ])

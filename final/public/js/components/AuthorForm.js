@@ -11,13 +11,11 @@ function AuthorForm () {
                         <div class="author">
                             <img src="/image/bg_foto.png" alt="author">
                         </div>
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
                                 tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
                                 quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
                                 consequat.</p>
-                            <p>alexmax</p>
-                        </div>
+                        <p>alexmax</p>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import {  create, render } from './RenderData'
 import { getStorage } from './Storage'
+import { getCookies } from './Cookies'
 
 function RelatedProducts () {
 
@@ -10,6 +11,9 @@ function RelatedProducts () {
   this.render = () => {
     let itemsLimit = 3
     let limit = 1
+
+    let arrCart = []
+    getCookies().forEach(item => arrCart.push(+item.key))
 
     let catalogList = getStorage()
     let value = location.hash.split('/')
@@ -36,18 +40,19 @@ function RelatedProducts () {
         value: 'col-lg-4 col-md-6 col-sm-6 col-xs-12 d-flex justify-content-center'
       }])
       let singleItem = create('div', [{ label: 'class', value: 'single-product' }])
-      let singleItemLink = create('a', [{ label: 'data-bs-toggle', value: 'modal' }, {
-        label: 'data-bs-target',
-        value: '#exampleModal'
-      }])
+      let singleItemLink = create('a', [{ label: 'href', value: `/#product/${elem.id}` },
+        {label: 'class', value: 'image-link'},
+        {label: 'target', value: '_blank'}
+      ])
 
+      let className = arrCart.includes(elem.id) ? 'in-cart' : ''
       let singleItemImg = create('img', [{ label: 'src', value: `${elem.image}` }, {
         label: 'alt',
         value: `${elem.title}`
-      }, { label: 'class', value: 'related-img' }])
+      }, { label: 'class', value: `related-img ${className}` }])
 
       let itemDetails = create('div', [{ label: 'class', value: 'product-details' }])
-      let itemDetailsHeader = create('h2')
+      let itemDetailsHeader = create('h4')
       let itemDetailsHeaderLink = create('a', [{ label: 'href', value: `/#product/${elem.id}` }], `${elem.title}`)
       let itemDetailsDescription = create('p', [{ label: 'class', value: 'popular-price' }], `$ ${elem.price}`)
 

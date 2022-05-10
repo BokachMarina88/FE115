@@ -15,7 +15,7 @@ function Catalog () {
 
     let catalogSection = create('section', [{ label: 'class', value: 'catalog' }])
     let container = create('div', [{ label: 'class', value: 'container' }])
-    let catalogSectionHeader = create('h2', [{ label: 'class', value: 'catalog-header' }])
+    let catalogSectionHeader = create('h3', [{ label: 'class', value: 'catalog-header' }])
     let catalogFeatures = create('div', [{ label: 'class', value: 'feature-product' }])
     let catalogProduct = create('div', [{ label: 'class', value: 'product-list' }])
     let catalogRow = create('div', [{ label: 'class', value: 'row' }])
@@ -79,7 +79,7 @@ function Catalog () {
         }, { label: 'class', value: className }])
 
         let itemDetails = create('div', [{ label: 'class', value: 'product-details' }])
-        let itemDetailsHeader = create('h2')
+        let itemDetailsHeader = create('h4')
         let itemDetailsHeaderLink = create('a', [{ label: 'href', value: `/#product/${elem.id}` }], `${elem.title}`)
         let itemDetailsDescription = create('p', [{ label: 'class', value: 'popular-price' }], `$ ${elem.price}`)
 

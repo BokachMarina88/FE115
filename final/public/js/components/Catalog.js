@@ -33,6 +33,7 @@ function Catalog () {
       } else {
         let value = location.hash.split('/')
         let categoryName = ''
+        catalogSectionHeader.style.textAlign = 'left'
 
         switch (value[1]) {
           case 'men':

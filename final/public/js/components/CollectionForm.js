@@ -1,6 +1,5 @@
-import {  create, render } from './RenderData'
-import { getCategoryStorage, getStorage } from './Storage'
-import { getCookies } from './Cookies'
+import { create, render } from './RenderData'
+import { getCategoryStorage } from './Storage'
 
 function CollectionForm () {
 
@@ -9,6 +8,7 @@ function CollectionForm () {
   }
 
   this.render = () => {
+    let all = 0
     let collectionArea = create('div', [{ label: 'class', value: 'collection-product-area' }])
     let collectionFilterArea = create('div', [{ label: 'class', value: 'collection-area' }])
     let collectionFilterAreaHeader = create('h2', [], 'Collections')
@@ -30,18 +30,26 @@ function CollectionForm () {
     let collectionList = getCategoryStorage()
     if (collectionList.length) {
       collectionList.map(elem => {
-        let elemClass = elem.split('\'')
+        let elemClass = elem.name.split('\'')
 
         let collectionFilterAreaItem = create('li', [])
         let collectionFilterAreaItemLink = create('a', [{
           label: 'href',
           value: `/#clothing/${elemClass[0]}`
-        }], `${elem} collection`)
+        }], `${elem.name} collection`)
+        let collectionFilterAreaItemCount = create('span', [], `(${elem.items})`)
+
+        all += elem.items
 
         render(collectionFilterAreaList, collectionFilterAreaItem)
         render(collectionFilterAreaItem, collectionFilterAreaItemLink)
+        render(collectionFilterAreaItem, collectionFilterAreaItemCount)
 
       })
+
+      let collectionFilterAreaItemCountAll = create('span', [], `(${all.toString()})`)
+
+      render(collectionFilterAreaItemAll, collectionFilterAreaItemCountAll)
     }
 
     let bannerImage = create('div', [{ label: 'class', value: 'banner-promo' }])

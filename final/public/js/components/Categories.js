@@ -19,16 +19,19 @@ function Categories () {
 
     if (categoryList.length) {
       categoryList.map(elem => {
-        let elemClass = elem.split('\'')
+        let elemClass = elem.name.split('\'')
 
         let singleImage = create('div', [{ label: 'class', value: `single-image categories-img ${elemClass[0]}` }])
-        let singleImageH2 = create('h2', [], `${elem} collection`)
+        let singleImageH2 = create('h2', [], `${elem.name} collection`)
         let singleImageDiv = create('div', [{ label: 'class', value: 'shop-collection' }])
-        let singleImageHref = create('a', [{ label: 'href', value: `/#clothing/${elemClass[0]}` }], `${elem} Collection`)
+        let singleImageHref = create('a', [{
+          label: 'href',
+          value: `/#clothing/${elemClass[0]}`
+        }], `${elem.name} Collection`)
         let singleImageSpan = create('span')
         let singleImageImg = create('img', [{ label: 'src', value: '/image/arrow_right.png' }, {
           label: 'alt',
-          value: `${elem} collection`
+          value: `${elem.name} collection`
         }])
 
         render(categoryDiv, singleImage)

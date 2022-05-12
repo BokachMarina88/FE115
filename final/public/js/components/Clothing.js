@@ -11,8 +11,8 @@ function Clothing () {
     let clothingSection = create('section', [{ label: 'class', value: 'clothing' }])
     let container = create('div', [{ label: 'class', value: 'container' }])
     let catalogRow = create('div', [{ label: 'class', value: 'row' }])
-    let clothingFilterDiv = create('div', [{ label: 'class', value: 'col-lg-3 col-md-3 col-sm-12 col-xs-12' }])
-    let clothingCatalogDiv = create('div', [{ label: 'class', value: 'col-lg-9 col-md-9 col-sm-12 col-xs-12' }])
+    let clothingFilterDiv = create('div', [{ label: 'class', value: 'col-lg-3 col-md-12 col-sm-12 col-xs-12' }])
+    let clothingCatalogDiv = create('div', [{ label: 'class', value: 'col-lg-9 col-md-12 col-sm-12 col-xs-12' }])
 
     render(clothingSection, container)
     render(container, catalogRow)

@@ -4,6 +4,7 @@ import { getStorage } from './Storage'
 import home from './Home'
 import product from './Product'
 import { cartCount } from './Cart'
+import Spinner from './Spinner'
 
 function Main () {
   this.init = () => {
@@ -43,6 +44,9 @@ function Main () {
   }
 
   this.routing = async () => {
+    let loading = Spinner()
+    this.element.append(loading)
+
     if (!getStorage().length) {
       await getData()
     }
@@ -51,21 +55,13 @@ function Main () {
 
     if (hash === 'Home') {
       this.element.innerHTML = ''
-      await import(`./Slider.js`).then(module => {
-        this.element.append(module.default.init())
-      })
-      await import(`./Categories.js`).then(module => {
-        this.element.append(module.default.init())
-      })
-      await import(`./Catalog.js`).then(module => {
-        this.element.append(module.default.init())
-      })
-      await import(`./AuthorForm.js`).then(module => {
-        this.element.append(module.default.init())
-      })
-      await import(`./ContactsForm.js`).then(module => {
-        this.element.append(module.default.init())
-      })
+      let pageArr = ['Slider', 'Categories', 'Catalog', 'AuthorForm', 'ContactsForm']
+
+      for (let i = 0; i < pageArr.length; i++) {
+        await import(`./${pageArr[i]}.js`).then(module => {
+          this.element.append(module.default.init())
+        })
+      }
       document.title = home.title
     } else if (hash === 'Product') {
       let localHash = window.location.hash.slice(1)

@@ -6,22 +6,22 @@ function Blog () {
   let elem = create('section', [{ label: 'class', value: 'blog' }])
   elem.innerHTML = `
       <div class="container">
-          <div class="row">
-              <div class="col-md-9 col-sm-9">
+            <div class="row">
+              <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                   <div class="post-format-area">
                       <img src="/image/blog/pic1.png" alt="Blog post">
                   </div>
                   <div class="blog-details-area">
                       <div class="blog-details-list">
-                          <ul class="blog-author">
+                          <ul class="blog-author post-text-style">
                               <li>
                                   <a href="/#blog"><span>blog</span></a>,
                                   <a href="/#blog"><span>mohin</span></a>,
                                   <a href="/#blog"><span>nirob</span></a>,
                                   <a href="/#blog"><span>salim</span></a>
                               </li>
-                              <li>Boot Expertsr</li>
-                              <li>May 25, 2016</li>
+                              <li class="post-text-style">Boot Expertsr</li>
+                              <li class="post-text-style">May 25, 2016</li>
                           </ul>
                       </div>
                       <div class="blog-info-details">
@@ -81,7 +81,7 @@ function Blog () {
                                       </div>
                                   </div>
                                   <div class="col-md-12">
-                                      <p>Please note, comments must be approved before they are published</p>
+                                      <p class="form-descpiption">Please note, comments must be approved before they are published</p>
                                   </div>
                                   <div class="col-lg-12">
                                       <div class="send-button">
@@ -93,7 +93,7 @@ function Blog () {
                       </div>
                   </div>
               </div>
-              <div class="col-md-3 col-sm-12 col-xs-12">
+              <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                   <h2 class="blog-right-module-title"><span>newsletter</span></h2>
                   <form action="" method="POST" class="newsletter">
                       <input type="email" value="" placeholder="email@example.com" name="sub_email"
@@ -106,45 +106,43 @@ function Blog () {
                       <h3 class="blog-right-module-title">
                           <span>Recent Posts</span>
                       </h3>
-                      <div class="single-blog-post">
-                          <div class="blog-img"><a href="/#blog"><img src="/image/blog/img/img.png"
-                                                                      alt="Martin Jerry"></a></div>
-                          <div class="post-sidebar-info">
-                              <h6><a href="/#blog">Martin Jerry</a></h6>
-                              <span>Boot Experts</span>
-                              <span>2016-05-25</span>
+                      <div class="d-flex justify-content-around flex-wrap">
+                          <div class="single-blog-post">
+                              <a href="/#blog" class="blog-img img1"></a>
+                              <div class="post-sidebar-info">
+                                  <h6><a href="/#blog">Martin Jerry</a></h6>
+                                  <span>Boot Experts</span>
+                                  <span>2016-05-25</span>
+                              </div>
                           </div>
-                      </div>
-                      <div class="single-blog-post">
-                          <div class="blog-img"><a href="/#blog"><img src="/image/blog/img/img1.png"
-                                                                      alt="Praesent ornare tortor"></a></div>
-                          <div class="post-sidebar-info">
-                              <h6><a href="/#blog">Praesent ornare tortor</a></h6>
-                              <span>Boot Experts</span>
-                              <span>2016-05-25</span>
+                          <div class="single-blog-post">
+                               <a href="/#blog" class="blog-img img2"></a>
+                              <div class="post-sidebar-info">
+                                  <h6><a href="/#blog">Praesent ornare tortor</a></h6>
+                                  <span>Boot Experts</span>
+                                  <span>2016-05-25</span>
+                              </div>
                           </div>
-                      </div>
-                      <div class="single-blog-post">
-                          <div class="blog-img"><a href="/#blog"><img src="/image/blog/img/img2.png"
-                                                                      alt="william eto"></a></div>
-                          <div class="post-sidebar-info">
-                              <h6><a href="/#blog">william eto</a></h6>
-                              <span>Boot Experts</span>
-                              <span>2016-05-25</span>
+                          <div class="single-blog-post">
+                               <a href="/#blog" class="blog-img img3"></a>
+                              <div class="post-sidebar-info">
+                                  <h6><a href="/#blog">william eto</a></h6>
+                                  <span>Boot Experts</span>
+                                  <span>2016-05-25</span>
+                              </div>
                           </div>
+                          <div class="single-blog-post">
+                            <a href="/#blog" class="blog-img img4"></a>
+                            <div class="post-sidebar-info">
+                                <h6><a href="/#blog">Praesent ornare tortor</a></h6>
+                                <span>Boot Experts</span>
+                                <span>2016-05-25</span>
+                            </div>
+                        </div>
                       </div>
-                      <div class="single-blog-post">
-                          <div class="blog-img"><a href="/#blog"><img src="/image/blog/img/img3.png"
-                                                                      alt="Praesent ornare tortor"></a></div>
-                          <div class="post-sidebar-info">
-                              <h6><a href="/#blog">Praesent ornare tortor</a></h6>
-                              <span>Boot Experts</span>
-                              <span>2016-05-25</span>
-                          </div>
                       </div>
-                  </div>
               </div>
-          </div>
+            </div>
       </div>`
 
   this.init = () => {

@@ -401,6 +401,11 @@ img.in-cart {
     border: 6px solid #ff0000;
 }
 
+.modal-body-img {
+    display: flex;
+    justify-content: center;
+}
+
 .cart-details-clicked {
     display: none;
 }

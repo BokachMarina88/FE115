@@ -1,4 +1,4 @@
-import { create, render, removeClasses, addClasses } from './RenderData'
+import { create, render } from './RenderData'
 import { getStorage } from './Storage'
 import cartForm from './CartForm'
 
@@ -16,6 +16,10 @@ function Product () {
       label: 'class',
       value: 'col-lg-5 col-md-12 col-sm-12 col-xs-12 product-info'
     }])
+    let productLink = create('a', [{ label: 'class', value: 'image-link' }, {
+      label: 'data-bs-toggle',
+      value: 'modal'
+    }, { label: 'data-bs-target', value: '#productModal' }])
     let productImage = create('img', [{ label: 'src', value: `${product[0].image}` },
       { label: 'alt', value: `${product[0].title}` }, { label: 'class', value: 'product-img' }])
     let productDescDiv = create('div', [{ label: 'class', value: 'col-lg-5 col-md-12 col-sm-12 col-xs-12' }])
@@ -62,10 +66,27 @@ function Product () {
     let descriptionTab3 = create('div', [{ label: 'class', value: 'tab-pane' }, { label: 'id', value: '3b' }])
     let descriptionTab3Text = create('p', [], 'Data sheet')
 
+    // modal
+    let modal = create('div', [{ label: 'class', value: 'modal' }, {
+      label: 'id',
+      value: 'productModal'
+    }, { label: 'tabindex', value: '-1' }])
+    let modalDialog = create('div', [{ label: 'class', value: 'modal-dialog' }])
+    let modalContent = create('div', [{ label: 'class', value: 'modal-content' }])
+    let modalHeader = create('div', [{ label: 'class', value: 'modal-header' }])
+    let modalHeaderTitle = create('h5', [{ label: 'class', value: 'modal-title' }], `${product[0].title}`)
+    let modalHeaderButton = create('button', [{ label: 'class', value: 'btn-close' }, { label: 'data-bs-dismiss', value: 'modal' }])
+    let modalBody = create('div', [{ label: 'class', value: 'modal-body modal-body-img' }])
+    let modalFooter= create('div', [{ label: 'class', value: 'modal-footer' }])
+    let modalFooterButton = create('button', [{ label: 'class', value: 'btn btn-primary' }, { label: 'data-bs-dismiss', value: 'modal' }], 'Close')
+    let modalProductImage = create('img', [{ label: 'src', value: `${product[0].image}` },
+      { label: 'alt', value: `${product[0].title}` }, { label: 'class', value: 'product-img' }])
+
     render(productSection, container)
     render(container, catalogRow)
     render(catalogRow, productImageDiv)
-    render(productImageDiv, productImage)
+    render(productImageDiv, productLink)
+    render(productLink, productImage)
     render(catalogRow, productDescDiv)
     render(productDescDiv, productDescHeader)
     render(productDescDiv, productDescRatingDiv)
@@ -85,7 +106,6 @@ function Product () {
     render(descriptionList, descriptionItem3)
     render(descriptionItem3, descriptionLink3)
 
-    render(descriptionSection, descriptionTabs)
     render(descriptionTabs, descriptionTab1)
     render(descriptionTab1, descriptionTab1Text)
     render(descriptionTabs, descriptionTab2)
@@ -96,6 +116,18 @@ function Product () {
     import(`./RelatedProducts.js`).then(module => {
       container.append(module.default.init())
     })
+
+    // modal
+    render(catalogRow, modal)
+    render(modal, modalDialog)
+    render(modalDialog, modalContent)
+    render(modalContent, modalHeader)
+    render(modalHeader, modalHeaderTitle)
+    render(modalHeader, modalHeaderButton)
+    render(modalContent, modalBody)
+    render(modalBody, modalProductImage)
+    render(modalContent, modalFooter)
+    render(modalFooter, modalFooterButton)
 
     return productSection
   }

@@ -82,6 +82,10 @@
         z-index: 99;
         background: #eeeeee;
     }
+
+    .recent-post {
+        justify-content: space-around;
+    }
 }
 
 @media (max-width: 991px) {
@@ -210,6 +214,10 @@
 
     .cart-checkout {
         justify-content: center;
+    }
+
+    .recent-post {
+        justify-content: flex-start;
     }
 }
 

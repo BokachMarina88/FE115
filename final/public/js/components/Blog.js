@@ -106,7 +106,7 @@ function Blog () {
                       <h3 class="blog-right-module-title">
                           <span>Recent Posts</span>
                       </h3>
-                      <div class="d-flex justify-content-around flex-wrap">
+                      <div class="recent-post">
                           <div class="single-blog-post">
                               <a href="/#blog" class="blog-img img1"></a>
                               <div class="post-sidebar-info">

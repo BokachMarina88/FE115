@@ -1242,3 +1242,9 @@ h6 a:hover {
     line-height: 16px;
     font-family: Arial;
 }
+
+.recent-post {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}

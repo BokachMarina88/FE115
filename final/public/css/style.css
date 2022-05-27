@@ -781,21 +781,6 @@ span.icon-star {
     display: none;
 }
 
-.add-favourite .ico {
-    display: inline-block;
-    width: 190px;
-    height: 40px;
-    border: 2px solid #222222;
-    background: #FFFFFF;
-}
-
-.add-favourite .icon-like {
-    background-image: url("../image/like.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 32px 32px;
-}
-
 .nav-pills .button:not(:last-child) {
     margin-right: 20px;
 }

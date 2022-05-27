@@ -106,6 +106,7 @@ function Product () {
     render(descriptionList, descriptionItem3)
     render(descriptionItem3, descriptionLink3)
 
+    render(descriptionSection, descriptionTabs)
     render(descriptionTabs, descriptionTab1)
     render(descriptionTab1, descriptionTab1Text)
     render(descriptionTabs, descriptionTab2)

@@ -32,12 +32,6 @@ function CartForm () {
       value: 'button remove-cart-button hide-button'
     }], 'Remove from cart')
 
-    let cartsFavBtn = create('div', [{ label: 'class', value: 'add-favourite' }])
-    let cartFav = create('a', [{ label: 'class', value: 'ico button icon-like' }, {
-      label: 'href',
-      value: `/#product/${product[0].id}`
-    }])
-
     render(productCart, productForm)
     render(productForm, cartDiv)
     render(cartDiv, cartLabel)
@@ -48,8 +42,7 @@ function CartForm () {
     render(cartsAddBtn, cartAdd)
     render(cartDiv, cartsRemoveBtn)
     render(cartsRemoveBtn, cartRemove)
-    render(cartDiv, cartsFavBtn)
-    render(cartsFavBtn, cartFav)
+
 
     if (getCookie(+product[0].id).length) {
       addClasses('hide-button', cartAdd)

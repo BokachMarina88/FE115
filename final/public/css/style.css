@@ -365,7 +365,7 @@ a.slider-readmore {
     text-align: center;
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
 }
 
@@ -415,7 +415,7 @@ img.in-cart {
 
 .cart-details {
     position: absolute;
-    top: 30px;
+    top: 15%;
     left: calc(100% - 75%);
     z-index: 98;
     opacity: 0;
@@ -680,7 +680,7 @@ h2.product-heading {
 
 img.product-img {
     width: 450px;
-    height: 520px;
+    max-height: 520px;
 }
 
 .product-rating {
